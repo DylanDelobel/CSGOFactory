@@ -1,0 +1,8 @@
+cs_weapon:
+    resource: "@CSWeaponBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
