@@ -49,3 +49,6 @@
 
 # PhpStorm Idea
 .idea/*
+
+# Composer
+composer.lock
