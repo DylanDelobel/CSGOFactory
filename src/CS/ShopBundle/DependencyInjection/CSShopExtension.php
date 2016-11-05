@@ -1,6 +1,6 @@
 <?php
 
-namespace CS\WeaponBundle\DependencyInjection;
+namespace CS\ShopBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * @link http://symfony.com/doc/current/cookbook/bundles/extension.html
  */
-class CSWeaponExtension extends Extension
+class CSShopExtension extends Extension
 {
     /**
      * {@inheritdoc}

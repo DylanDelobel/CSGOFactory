@@ -1,17 +1,17 @@
 <?php
 
-namespace CS\WeaponBundle\Controller;
+namespace CS\ShopBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-class DefaultController extends Controller
+class ShopController extends Controller
 {
     /**
      * @Route("/")
      */
     public function indexAction()
     {
-        return $this->render('CSWeaponBundle:Default:index.html.twig');
+        return $this->render('CSShopBundle:Default:index.html.twig');
     }
 }
