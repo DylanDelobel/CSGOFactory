@@ -1,0 +1,39 @@
+{% extends "::base.html.twig" %}
+
+{% block navbar %}
+
+<nav class="navbar navbar-fixed-top navbar-inverse">
+	<a class="navbar-brand" href="#">CSGOFactory</a>
+	<ul class="nav navbar-nav">
+		<li class="nav-item active">
+			<a class="nav-link" href="#">Page1<span class="sr-only">(current)</span></a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="#">Page2</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="#">Page3</a>
+		</li>
+	</ul>
+</nav>
+
+{% endblock %}
+
+{% block footer %}
+	
+<div class="container">
+	<hr>
+	<footer>
+		<div class="row">
+			<div class="col-lg-12">
+				<p>Copyright &copy; CSGOFactory 2016</p>
+			</div>
+		</div>
+	</footer>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+{% endblock %}
