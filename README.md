@@ -11,9 +11,6 @@ Requirements
 Installation
 ------------
 
-As WellCommerce uses [Composer][1] to manage its dependencies, the recommended way
-to create a new project is to use it.
-
 If you don't have Composer yet, download it following the instructions on
 http://getcomposer.org/ or just run the following command:
 
