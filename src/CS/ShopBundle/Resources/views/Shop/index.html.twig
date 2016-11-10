@@ -1,0 +1,71 @@
+{% extends 'CSShopBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+	<link href="{{ asset('css/shop/homepage.css') }}" rel="stylesheet">
+{% endblock %}
+
+	{% block content %}
+
+ <!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <p class="lead">Rifles exemple</p>
+            <div class="list-group">
+                <a href="#" class="list-group-item">Category 1</a>
+                <a href="#" class="list-group-item">Category 2</a>
+                <a href="#" class="list-group-item">Category 3</a>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+
+
+            <div class="row">
+
+                <div class="row">
+                    
+                    <div class="col-sm-9 col-lg-9 col-md-9">
+                        <div class="thumbnail">
+
+                            <img src="http://placekitten.com/320/150" alt="">
+
+                            <div class="caption">
+                                <h4 class="pull-right">$24.99</h4>
+                                <h4><a href="#">First Product</a>
+                                </h4>
+                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">15 reviews</p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+    <!-- /.container -->
+
+
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+{% endblock %}
