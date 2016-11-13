@@ -33,6 +33,14 @@ body {
     padding-left: 10px;
     color: #d17581;
 }
+.red{
+    color: #d17581;
+}
+
+.imageShop{
+    height: 55%;
+    width: 80%;
+}
 
 .thumbnail {
     padding: 0;
