@@ -67,28 +67,5 @@ class Model
     {
         return $this->name;
     }
-
-    /**
-     * Set family
-     *
-     * @param \CS\ShopBundle\Entity\Family $family
-     *
-     * @return Model
-     */
-    public function setFamily(\CS\ShopBundle\Entity\Family $family)
-    {
-        $this->family = $family;
-
-        return $this;
-    }
-
-    /**
-     * Get family
-     *
-     * @return \CS\ShopBundle\Entity\Family
-     */
-    public function getFamily()
-    {
-        return $this->family;
-    }
 }
+

@@ -63,4 +63,3 @@ class Family
         return $this->name;
     }
 }
-

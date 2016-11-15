@@ -5,18 +5,13 @@ namespace CS\ShopBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Model
+ * Family
  *
- * @ORM\Table(name="model")
- * @ORM\Entity(repositoryClass="CS\ShopBundle\Repository\ModelRepository")
+ * @ORM\Table(name="family")
+ * @ORM\Entity(repositoryClass="CS\ShopBundle\Repository\FamilyRepository")
  */
-class Model
+class Family
 {
-    /**
-     * @ORM\ManyToOne(targetEntity="CS\ShopBundle\Entity\Family")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $family;
     /**
      * @var int
      *
@@ -49,7 +44,7 @@ class Model
      *
      * @param string $name
      *
-     * @return Model
+     * @return Family
      */
     public function setName($name)
     {
@@ -67,28 +62,5 @@ class Model
     {
         return $this->name;
     }
-
-    /**
-     * Set family
-     *
-     * @param \CS\ShopBundle\Entity\Family $family
-     *
-     * @return Model
-     */
-    public function setFamily(\CS\ShopBundle\Entity\Family $family)
-    {
-        $this->family = $family;
-
-        return $this;
-    }
-
-    /**
-     * Get family
-     *
-     * @return \CS\ShopBundle\Entity\Family
-     */
-    public function getFamily()
-    {
-        return $this->family;
-    }
 }
+
