@@ -16,6 +16,7 @@ class Model
      * @ORM\ManyToOne(targetEntity="CS\ShopBundle\Entity\Family")
      * @ORM\JoinColumn(nullable=false)
      */
+    
     private $family;
     /**
      * @var int
