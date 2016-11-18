@@ -13,6 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Weapon
 {
     /**
+     * @ORM\ManyToOne(targetEntity="CS\ShopBundle\Entity\Model")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $model;
+    /**
      * @ORM\ManyToOne(targetEntity="CS\ShopBundle\Entity\Image")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -193,5 +198,29 @@ class Weapon
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Set model
+     *
+     * @param \CS\ShopBundle\Entity\Model $model
+     *
+     * @return Weapon
+     */
+    public function setModel(\CS\ShopBundle\Entity\Model $model)
+    {
+        $this->model = $model;
+
+        return $this;
+    }
+
+    /**
+     * Get model
+     *
+     * @return \CS\ShopBundle\Entity\Model
+     */
+    public function getModel()
+    {
+        return $this->model;
     }
 }
