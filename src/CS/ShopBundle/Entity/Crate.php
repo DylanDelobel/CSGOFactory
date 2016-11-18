@@ -5,13 +5,18 @@ namespace CS\ShopBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Family
+ * Crate
  *
- * @ORM\Table(name="family")
- * @ORM\Entity(repositoryClass="CS\ShopBundle\Repository\FamilyRepository")
+ * @ORM\Table(name="crate")
+ * @ORM\Entity(repositoryClass="CS\ShopBundle\Repository\CrateRepository")
  */
-class Family
+class Crate
 {
+    /**
+     * @ORM\OneToOne(targetEntity="CS\ShopBundle\Entity\Image", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $image;
     /**
      * @var int
      *
@@ -24,7 +29,7 @@ class Family
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=100)
+     * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
@@ -44,7 +49,7 @@ class Family
      *
      * @param string $name
      *
-     * @return Family
+     * @return Crate
      */
     public function setName($name)
     {

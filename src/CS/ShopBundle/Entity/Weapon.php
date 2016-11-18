@@ -18,6 +18,16 @@ class Weapon
      */
     private $image;
     /**
+     * @ORM\ManyToOne(targetEntity="CS\ShopBundle\Entity\Crate")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $crate;
+    /**
+     * @ORM\ManyToOne(targetEntity="CS\ShopBundle\Entity\Collection")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $collection;
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
