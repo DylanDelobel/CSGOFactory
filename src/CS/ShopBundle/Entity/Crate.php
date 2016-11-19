@@ -67,5 +67,28 @@ class Crate
     {
         return $this->name;
     }
-}
 
+    /**
+     * Set image
+     *
+     * @param \CS\ShopBundle\Entity\Image $image
+     *
+     * @return Crate
+     */
+    public function setImage(\CS\ShopBundle\Entity\Image $image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \CS\ShopBundle\Entity\Image
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+}
