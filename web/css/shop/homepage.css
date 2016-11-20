@@ -7,6 +7,9 @@
 body {
     padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
+footer {
+    margin: 50px 0;
+}
 
 .hero-spacer {
     margin-top: 50px;
@@ -16,6 +19,17 @@ body {
     margin-bottom: 30px;
 }
 
-footer {
-    margin: 50px 0;
+/*CSS Shop Page*/
+.ratings {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
 }
+.red{
+    color: #d17581;
+}
+.imageShop{
+    height: 55%;
+    width: 80%;
+}
+/*End CSS Shop Page*/

@@ -2,6 +2,7 @@
 
 namespace CS\ShopBundle\Controller;
 
+use CS\ShopBundle\CSShopBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -20,6 +21,12 @@ class ShopController extends Controller
      */
     public function shopAction()
     {
-        return $this->render('CSShopBundle:Shop:index.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $listWeapons = $em->getRepository('CSShopBundle:Weapon')->findAll();
+
+
+
+        return $this->render('CSShopBundle:Shop:index.html.twig',array('listWeapons' => $listWeapons));
     }
 }
