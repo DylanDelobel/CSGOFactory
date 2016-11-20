@@ -12,6 +12,14 @@ class ShopController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('CSShopBundle:Default:index.html.twig');
+        return $this->render('CSShopBundle:Home:index.html.twig');
+    }
+
+    /**
+     * @Route("/shop")
+     */
+    public function shopAction()
+    {
+        return $this->render('CSShopBundle:Shop:index.html.twig');
     }
 }
