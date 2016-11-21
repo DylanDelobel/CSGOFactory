@@ -4,6 +4,6 @@ admin:
     prefix:   /
 
 cs_shop:
-    resource: "@CSShopBundle/Controller/"
+    resource: "@ShopBundle/Controller/"
     type:     annotation
     prefix:   /
