@@ -40,7 +40,7 @@ class LoadCrates implements FixtureInterface
 	foreach ($crates as $crateName)
 	{
 		$image = new Image();
-		$image->setPath("path/test");
+		$image->setPath("http://placehold.it/256x198");
 		// Create the Crate
 		$crate = new Crate();
 

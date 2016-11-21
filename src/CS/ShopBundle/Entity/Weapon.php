@@ -223,4 +223,52 @@ class Weapon
     {
         return $this->model;
     }
+
+    /**
+     * Set crate
+     *
+     * @param \CS\ShopBundle\Entity\Crate $crate
+     *
+     * @return Weapon
+     */
+    public function setCrate(\CS\ShopBundle\Entity\Crate $crate = null)
+    {
+        $this->crate = $crate;
+
+        return $this;
+    }
+
+    /**
+     * Get crate
+     *
+     * @return \CS\ShopBundle\Entity\Crate
+     */
+    public function getCrate()
+    {
+        return $this->crate;
+    }
+
+    /**
+     * Set collection
+     *
+     * @param \CS\ShopBundle\Entity\Collection $collection
+     *
+     * @return Weapon
+     */
+    public function setCollection(\CS\ShopBundle\Entity\Collection $collection = null)
+    {
+        $this->collection = $collection;
+
+        return $this;
+    }
+
+    /**
+     * Get collection
+     *
+     * @return \CS\ShopBundle\Entity\Collection
+     */
+    public function getCollection()
+    {
+        return $this->collection;
+    }
 }

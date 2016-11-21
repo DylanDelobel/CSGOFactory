@@ -42,7 +42,7 @@ class LoadCollections implements FixtureInterface
 	foreach ($collections as $collectionName)
 	{
 		$image = new Image();
-		$image->setPath("path/test");
+		$image->setPath("http://placehold.it/200x200"); 
 		// Create the collection
 		$collection = new Collection();
 
