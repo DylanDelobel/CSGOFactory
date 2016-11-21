@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b2a3c9ebd1e46994a70c1d49adbeed91",
-    "content-hash": "9041a307d8cedb090ba64dc852c86482",
+    "hash": "821f066b4f23aac5667604430f14250f",
+    "content-hash": "1bfb0199a5cd0daa7aba0a4e2d21ab08",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -2020,6 +2020,50 @@
             "time": "2016-10-27 02:38:53"
         },
         {
+            "name": "tiloweb/pagination-bundle",
+            "version": "dev-master",
+            "target-dir": "Tiloweb/PaginationBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Tiloweb/SymfonyPaginationBundle.git",
+                "reference": "e153b57758a727765b56969f74d616d3538d904a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Tiloweb/SymfonyPaginationBundle/zipball/e153b57758a727765b56969f74d616d3538d904a",
+                "reference": "e153b57758a727765b56969f74d616d3538d904a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/framework-bundle": "~2.3|~3.0",
+                "twig/twig": "~1.12|~2"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Tiloweb\\PaginationBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Thibault HENRY",
+                    "homepage": "http://www.tiloweb.com"
+                }
+            ],
+            "description": "/",
+            "keywords": [
+                "Symfony2",
+                "bundle",
+                "pager",
+                "pagination",
+                "paginator",
+                "tiloweb"
+            ],
+            "time": "2016-08-01 17:24:41"
+        },
+        {
             "name": "twig/twig",
             "version": "v1.27.0",
             "source": {
@@ -2192,7 +2236,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "tiloweb/pagination-bundle": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
