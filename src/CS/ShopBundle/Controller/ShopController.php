@@ -5,6 +5,7 @@ namespace CS\ShopBundle\Controller;
 use CS\ShopBundle\CSShopBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class ShopController extends Controller
 {
@@ -17,13 +18,16 @@ class ShopController extends Controller
     }
 
     /**
-     * @Route("/shop")
+     * @Route("/shop/")
      */
-    public function shopAction()
+    public function shopAction(Request $request)
     {
+
+        
         $em = $this->getDoctrine()->getManager();
 
-        $listWeapons = $em->getRepository('CSShopBundle:Weapon')->findAll();
+        $listWeapons = $em->getRepository('CSShopBundle:Weapon')->findAllPagineEtTrie($request->query->getInt('page', 1), 5);
+
 
 
 
