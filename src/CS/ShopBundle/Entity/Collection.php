@@ -33,6 +33,17 @@ class Collection
      */
     private $name;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime")
+     */
+    private $date;
+
+    public function __construct(){
+        $this->date = new \DateTime();
+    }
+
 
     /**
      * Get id
@@ -90,5 +101,29 @@ class Collection
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Collection
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
     }
 }
