@@ -13,7 +13,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class WeaponRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findAllPagineEtTrie($page, $max){
+    public function findAllPagine($page, $max){
         if(!is_numeric($page)) {
             throw new \InvalidArgumentException(
                 '$page must be an integer ('.gettype($page).' : '.$page.')'
@@ -43,4 +43,43 @@ class WeaponRepository extends \Doctrine\ORM\EntityRepository
 
         return $paginator;
     }
+
+    public function findSearchPagine($priceMin, $priceMax, $page, $max){
+        if(!is_numeric($page)) {
+            throw new \InvalidArgumentException(
+                '$page must be an integer ('.gettype($page).' : '.$page.')'
+            );
+        }
+
+        if(!is_numeric($page)) {
+            throw new \InvalidArgumentException(
+                '$max must be an integer ('.gettype($max).' : '.$max.')'
+            );
+        }
+
+        $dql = $this->createQueryBuilder('w');
+        $dql
+            ->where('w.price BETWEEN :min AND :max')
+            ->setParameter('min', $priceMin)
+            ->setParameter('max', $priceMax);
+        
+
+
+
+
+        $firstResult = ($page - 1) * $max;
+
+        $query = $dql->getQuery();
+        $query->setFirstResult($firstResult);
+        $query->setMaxResults($max);
+
+        $paginator = new Paginator($query);
+
+        if(($paginator->count() <=  $firstResult) && $page != 1) {
+            throw new NotFoundHttpException('Page not found');
+        }
+
+        return $paginator;
+    }
+    
 }

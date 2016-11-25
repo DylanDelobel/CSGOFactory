@@ -12,42 +12,20 @@
     <div class="row">
 
         <div class="col-md-3">
-            <p class="lead">Filter</p>
 
-            <form class="form-horizontal">
-                <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12 form-group">
-                    <label for="searchItems" class="col-xs-12 col-sm-12 col-lg-12 col-md-12">Search</label>
-                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
-                        <input type="search" id="searchItems" class="form-control">
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12 form-group">
-                    <label for="inputWear" class="col-xs-12 col-sm-12 col-lg-12 col-md-12">Wear</label>
-                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12 ">
-                        <select id="inputWear" class="form-control">
-                            <option value="none"></option>
-                            <option value="1">Factory New</option>
-                            <option value="2">Minimal Wear</option>
-                            <option value="3">Field-Tested</option>
-                            <option value="4">Well-Worn</option>
-                            <option value="5">Battle-Scarred</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12 form-group">
-                    <label for="inputPrice" class="col-xs-12 col-sm-12 col-lg-12 col-md-12">Price</label>
-                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
-                        <input type="number" class="form-control" placeholder="Minimal" min="0">
-                        <input type="number" class="form-control" placeholder="Maximal" min="0">
-                    </div>
-                </div>
 
-                <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12 form-group">
-                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
-                        <button type="submit" class="center-block btn btn-default">Search</button>
-                    </div>
-                </div>
-            </form>
+            <div class="well">
+                <p class="lead">Filter</p>
+                {{ form(form) }}
+            </div>
+            <div>
+
+                <P>{{ search }}</P>
+                <P>{{ wear }}</P>
+                <P>{{ priceMin }}</P>
+                <P>{{ priceMax }}</P>
+
+            </div>
         </div>
 
         <div class="col-md-9">
@@ -105,7 +83,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+            <div class="col-md-offset-3">
                 <table>
                     <tr>
                         <td colspan="2">
@@ -116,6 +94,10 @@
             </div>
 
         </div>
+    </div>
+
+    <div class="well">
+        {{ form(form) }}
     </div>
 
 
