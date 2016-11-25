@@ -1,8 +1,3 @@
-admin:
-    resource: "@AdminBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
 cs_shop:
     resource: "@ShopBundle/Controller/"
     type:     annotation
