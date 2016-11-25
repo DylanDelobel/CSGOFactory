@@ -33,4 +33,12 @@ class ShopController extends Controller
 
         return $this->render('ShopBundle:Shop:index.html.twig',array('listWeapons' => $listWeapons));
     }
+
+    /**
+     * @Route("/contact/")
+     */
+    public function contactAction()
+    {
+        return $this->render('ShopBundle:Contact:index.html.twig');
+    }
 }

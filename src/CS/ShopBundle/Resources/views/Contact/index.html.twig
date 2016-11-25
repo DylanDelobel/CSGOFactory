@@ -1,0 +1,97 @@
+{% extends 'ShopBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/shop/homepage.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="container" id="container">
+
+
+        <!-- First title-->
+        <div class="row">
+            <h2 id="titre">Contact us</h2><hr class="hrTitre">
+        </div><br>
+
+        <div class="well col-xs-offset-1 col-sm-offset-0 col-lg-offset-0 col-md-offset-0 col-xs-10 col-sm-10 col-lg-12 col-md-12">
+            <div class="row">
+                <div class="col-sm-6 col-lg-6 col-md-6">
+
+                    <!-- Title in the Well-->
+                    <div class="row">
+                        <div class="col-sm-offset-1 col-lg-offset-1 col-md-offset-1">
+                            <h3 id="title2">Let's keep in touch</h3>
+                        </div>
+                    </div><br>
+
+                    <!-- Start form-->
+                    <form>
+                        <!-- First input : Name -->
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-sm-offset-0 col-lg-offset-2 col-md-offset-2 col-sm-1 col-lg-1 col-md-1">
+                                    <label for="inputName" id="labelName">Name</label>
+                                </div>
+                                <div class="col-sm-offset-2 col-lg-offset-1 col-md-offset-1 col-xs-11 col-sm-8 col-lg-7 col-md-7">
+                                    <input type="text" name="name" id="inputName" class="form-control" placeholder="Name">
+                                </div>
+                            </div>
+                        </div><br>
+
+                        <!-- Input two : Email-->
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-sm-offset-0 col-lg-offset-2 col-md-offset-2 col-sm-1 col-lg-1 col-md-1">
+                                    <label for="inputEmail" id="labelEmail">Email</label>
+                                </div>
+                                <div class="col-sm-offset-2 col-lg-offset-1 col-md-offset-1 col-xs-11 col-sm-8 col-lg-7 col-md-7">
+                                    <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email">
+                                </div>
+                            </div>
+                        </div><br>
+
+                        <!-- Input three : Phone -->
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-sm-offset-0 col-lg-offset-2 col-md-offset-2 col-sm-1 col-lg-1 col-md-1">
+                                    <label for="inputPhone" id="labelPhone">Phone</label>
+                                </div>
+                                <div class="col-sm-offset-2 col-lg-offset-1 col-md-offset-1 col-xs-11 col-sm-8 col-lg-7 col-md-7">
+                                    <input type="tel" name="phone" id="inputPhone" class="form-control" placeholder="Phone">
+                                </div>
+                            </div>
+                        </div><br>
+
+                        <!-- Last input-->
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-sm-offset-0 col-lg-offset-2 col-md-offset-2 col-sm-1 col-lg-1 col-md-1">
+                                    <label for="inputMessage" id="labelMessage">Message</label>
+                                </div>
+                                <div class="col-sm-offset-2 col-lg-offset-1 col-md-offset-1 col-xs-11 col-sm-8 col-lg-7 col-md-7">
+                                    <textarea name="message" id="inputMessage" class="form-control" placeholder="Message"></textarea>
+                                </div>
+                            </div>
+                        </div><br>
+
+                        <!-- submit -->
+                        <div class="row" id="rowInput">
+                            <div class="col-xs-offset-8 col-sm-offset-8 col-lg-offset-10 col-md-offset-10">
+                                <input type="submit" name="submit" class="btn btn-default" value="Submit" id="submit">
+                            </div>
+                        </div>
+                    </form>
+                </div> <!-- End form-->
+
+                <!-- Google Maps-->
+                <div class="col-xs-offset-0 col-sm-offset-0 col-lg-offset-1 col-md-offset-1 col-xs-2 col-sm-5 col-lg-5 col-md-5">
+                    <iframe id="map" frameborder="0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJX53zlbdvsBIRNs8VjbxuFhY&key=AIzaSyBtdG9jXCIhNAFkzLU35DVHwIrEzQJAWQ0" allowfullscreen></iframe>
+                </div> <!-- End  col googleMaps-->
+
+            </div> <!-- End col-->
+        </div> <!-- End row content -->
+    </div> <!-- End container -->
+
+{% endblock %}
