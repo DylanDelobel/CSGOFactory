@@ -23,12 +23,19 @@
 
         <hr>
 
-        <!-- Title -->
+        {% if Collection is empty %}
         <div class="row">
             <div class="col-lg-12">
-                <h3>Colletion number 1</h3>
+                <h3>Collection inexistante</h3>
             </div>
         </div>
+        {% else %}
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>{{ Collection.name }}</h3>
+            </div>
+        </div>
+        {% endif %}
         <!-- /.row -->
 
         <!-- Page Features -->

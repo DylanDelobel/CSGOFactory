@@ -40,10 +40,6 @@ class Crate
      */
     private $date;
 
-    public function __construct(){
-        $this->date = new \DateTime();
-    }
-
 
     /**
      * Get id
@@ -101,29 +97,5 @@ class Crate
     public function getImage()
     {
         return $this->image;
-    }
-
-    /**
-     * Set date
-     *
-     * @param \DateTime $date
-     *
-     * @return Crate
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    /**
-     * Get date
-     *
-     * @return \DateTime
-     */
-    public function getDate()
-    {
-        return $this->date;
     }
 }

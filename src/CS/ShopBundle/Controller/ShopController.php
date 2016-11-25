@@ -14,7 +14,15 @@ class ShopController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('ShopBundle:Home:index.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $collection2 = $em->getRepository('ShopBundle:Collection')->findOneById(66);
+
+        $repository = $this->getDoctrine()->getRepository('ShopBundle:Collection');
+
+        $collection = $repository->findOneById(66);
+
+        return $this->render('ShopBundle:Home:index.html.twig', array('Collection' => $collection));
     }
 
     /**
@@ -26,7 +34,7 @@ class ShopController extends Controller
         
         $em = $this->getDoctrine()->getManager();
 
-        $listWeapons = $em->getRepository('ShopBundle:Weapon')->findAllPagineEtTrie($request->query->getInt('page', 1), 5);
+        
 
 
 

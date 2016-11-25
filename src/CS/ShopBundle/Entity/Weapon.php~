@@ -76,10 +76,6 @@ class Weapon
      */
     private $date;
 
-    public function __construct(){
-        $this->date = new \DateTime();
-    }
-
     /**
      * Get id
      *
@@ -280,29 +276,5 @@ class Weapon
     public function getCollection()
     {
         return $this->collection;
-    }
-
-    /**
-     * Set date
-     *
-     * @param \DateTime $date
-     *
-     * @return Weapon
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    /**
-     * Get date
-     *
-     * @return \DateTime
-     */
-    public function getDate()
-    {
-        return $this->date;
     }
 }
