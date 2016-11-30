@@ -19,7 +19,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 class ShopController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="home")
      */
     public function indexAction()
     {

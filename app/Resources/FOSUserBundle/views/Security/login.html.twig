@@ -1,0 +1,54 @@
+{% extends 'ShopBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/shop/login.css') }}" rel="stylesheet">
+{% endblock %}
+
+	{% block content %}
+        {% if error %}
+            <div class="row">
+                <div class="text-center col-md-2 col-md-offset-5">
+                    <div class="alert alert-danger">
+                        <div>{{ error.message }}</div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        <div class="text-center" style="padding:50px 0">
+            <div class="logo">Login</div>
+            <!-- Main Form -->
+            <div class="login-form-1">
+                    <form action="{{ path('fos_user_security_check') }}" id="login-form" method="post" class="text-left">
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+                    <div class="login-form-main-message"></div>
+                    <div class="main-login-form">
+                        <div class="login-group">
+                            <div class="form-group">
+                                <label for="lg_username" class="sr-only">Username</label>
+                                <input type="text" class="form-control" id="username" name="_username" placeholder="Username" value="{{ last_username }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="lg_password" class="sr-only">Password</label>
+                                <input type="password" class="form-control" id="password" name="_password" placeholder="Password">
+                            </div>
+                            <div class="form-group login-group-checkbox">
+                                <input type="checkbox" id="remember_me" name="_remember_me">
+                                <label for="lg_remember">Remember</label>
+                            </div>
+                        </div>
+                        <button type="submit" name="login" class="login-button"><i class="glyphicon glyphicon-chevron-right"></i></button>
+                    </div>
+                    <div class="etc-login-form">
+                        <p>Forgot your password? <a href="{{ url('fos_user_resetting_request') }}">click here</a></p>
+                        <p>New user? <a href="{{ url('fos_user_registration_register') }}">create new account</a></p>
+                    </div>
+                </form>
+            </div>
+            <!-- end:Main Form -->
+        </div>
+
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+    {% endblock %}
