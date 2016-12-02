@@ -35,7 +35,7 @@ class ShopController extends Controller
     }
 
     /**
-     * @Route("/shop/")
+     * @Route("/shop/", name="shop")
      */
     public function shopAction(Request $request)
     {
@@ -113,19 +113,11 @@ class ShopController extends Controller
     }
 
     /**
-     * @Route("/contact/")
+     * @Route("/contact/", name="contact")
      */
     public function contactAction()
     {
         return $this->render('ShopBundle:Contact:index.html.twig');
-    }
-
-    /**
-     * @Route("/cart/")
-     */
-    public function cartAction()
-    {
-        return $this->render('ShopBundle:Cart:index.html.twig');
     }
 }
 

@@ -38,9 +38,16 @@
                         <a class="nav-link" href="#">Collections</a>
                     </li>
                 </ul>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{ url('fos_user_security_login') }}">Login <span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></li>
+                    <li><a href="{{ url('cart') }}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart</a></li>
+                    <li><a href="{{ url('fos_user_security_logout') }}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Logout</a></li>
                 </ul>
+                {% else %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ url('fos_user_security_login') }}"><span class="glyphicon glyphicon-user" aria-hidden="true"> Login</span></a></li>
+                </ul>
+                {% endif %}
             </div>
             <!-- /.navbar-collapse -->
         </div>
