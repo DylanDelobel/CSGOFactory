@@ -119,4 +119,13 @@ class ShopController extends Controller
     {
         return $this->render('ShopBundle:Contact:index.html.twig');
     }
+
+    /**
+     * @Route("/cart/")
+     */
+    public function cartAction()
+    {
+        return $this->render('ShopBundle:Cart:index.html.twig');
+    }
 }
+
