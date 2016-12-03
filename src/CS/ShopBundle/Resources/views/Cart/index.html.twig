@@ -1,4 +1,6 @@
 {% extends 'ShopBundle::layout.html.twig' %}
+{% set TVA = 0.20 %}
+{% set totalHT = 0 %}
 
 {% block stylesheets %}
     <link href="{{ asset('css/shop/homepage.css') }}" rel="stylesheet">
@@ -7,83 +9,99 @@
 {% block content %}
 
 <div class="container">
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        <div class="alert alert-success">
+           <p>{{ flashMessage }}</p>
+        </div>
+    {% endfor %}
     <div class="row">
         <div class="col-sm-12 col-md-10 col-md-offset-1">
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Quantity</th>
-                    <th class="text-center">Price</th>
-                    <th class="text-center">Total</th>
-                    <th> </th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td class="col-sm-8 col-md-6">
-                        <div class="media">
-                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
-                            <div class="media-body">
-                                <h4 class="media-heading"><a href="#">Product name</a></h4>
-                                <h5 class="media-heading"> by <a href="#">Brand name</a></h5>
-                                <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
-                            </div>
-                        </div></td>
-                    <td class="col-sm-1 col-md-1" style="text-align: center">
-                        <input type="email" class="form-control" id="exampleInputEmail1" value="3">
-                    </td>
-                    <td class="col-sm-1 col-md-1 text-center"><strong>$4.87</strong></td>
-                    <td class="col-sm-1 col-md-1 text-center"><strong>$14.61</strong></td>
-                    <td class="col-sm-1 col-md-1">
-                        <button type="button" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove"></span> Remove
-                        </button></td>
-                </tr>
-                <tr>
-                    <td class="col-md-6">
-                        <div class="media">
-                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
-                            <div class="media-body">
-                                <h4 class="media-heading"><a href="#">Product name</a></h4>
-                                <h5 class="media-heading"> by <a href="#">Brand name</a></h5>
-                                <span>Status: </span><span class="text-warning"><strong>Leaves warehouse in 2 - 3 weeks</strong></span>
-                            </div>
-                        </div></td>
-                    <td class="col-md-1" style="text-align: center">
-                        <input type="email" class="form-control" id="exampleInputEmail1" value="2">
-                    </td>
-                    <td class="col-md-1 text-center"><strong>$4.99</strong></td>
-                    <td class="col-md-1 text-center"><strong>$9.98</strong></td>
-                    <td class="col-md-1">
-                        <button type="button" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove"></span> Remove
-                        </button></td>
-                </tr>
-                </tbody>
-                <tfoot>
-                <tr>
-                    <td>   </td>
-                    <td>   </td>
-                    <td>   </td>
-                    <td><h5>Subtotal<br>Estimated shipping</h5><h3>Total</h3></td>
-                    <td class="text-right"><h5><strong>$24.59<br>$6.94</strong></h5><h3>$31.53</h3></td>
-                </tr>
-                <tr>
-                    <td>   </td>
-                    <td>   </td>
-                    <td>   </td>
-                    <td>
-                        <button type="button" class="btn btn-default">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+            {% if listWeapons is empty %}
+                <div class="col-sm-12 col-md-10 col-md-offset-1">
+                    <div class="text-center caption">
+                        <h2>No item in the cart</h2>
+                        <p>Go and do some shopping !</p>
+                        <a class="btn btn-default" href="{{ path('shop') }}">
                             <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
-                        </button></td>
-                    <td>
-                        <button type="button" class="btn btn-success">
-                            Checkout <span class="glyphicon glyphicon-play"></span>
-                        </button></td>
-                </tr>
-                </tfoot>
-            </table>
+                        </a>
+                    </div>
+                </div>
+                <hr class="col-sm-12 col-md-10 col-md-offset-1">
+            {% else %}
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th class="text-center">Price</th>
+                        <th class="text-center">Total</th>
+                        <th> </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for Weapons in listWeapons  %}
+                        <tr>
+                            <td class="col-sm-8 col-md-6">
+                                <div class="media">
+                                    <img class="media-object pull-left" src="{{ Weapons.image.path }}" style="width: 72px; height: 72px;">
+                                    <div class="media-body">
+                                        <h4 class="media-heading"><a href="#">{{ Weapons.name }}</a></h4>
+                                        <h5 class="media-heading"> Model: <a href="#">{{ Weapons.model.name }}</a></h5>
+                                        {% if Weapons.quantity >= cart[Weapons.id] %}
+                                            <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
+                                        {% else %}
+                                            <span>Status: </span><span class="text-danger"><strong>Not In Stock</strong></span>
+                                        {% endif %}
+                                    </div>
+                                </div></td>
+                            <td class="col-sm-1 col-md-1" style="text-align: center">
+                                <input type="number" class="form-control" id="qtWeapon" value="{{ cart[Weapons.id] }}" disabled>
+                            </td>
+                            <td class="col-sm-1 col-md-1 text-center"><strong>{{ Weapons.price }} €</strong></td>
+                            <td class="col-sm-1 col-md-1 text-center"><strong>{{ Weapons.price*cart[Weapons.id] }} €</strong></td>
+                            <td class="col-sm-1 col-md-1">
+
+                                <a class="btn btn-danger" href="{{ path('cart_delete',{'id' : Weapons.id }) }}">
+                                    <span class="glyphicon glyphicon-remove"></span> Remove
+                                </a>
+                            </td>
+                        </tr>
+                            {% set totalHT  = totalHT + (Weapons.price * cart[Weapons.id]) %}
+
+                    {% endfor %}
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td>   </td>
+                            <td>   </td>
+                            <td>   </td>
+                            <td><h5>Subtotal<br>Estimated shipping</h5><h3>Total</h3></td>
+                            <td class="text-right"><h5><strong>{{ totalHT }}€<br>{{ totalHT * TVA }}€</strong></h5><h3>{{ totalHT + (totalHT * TVA) }}</h3></td>
+                        </tr>
+                        <tr>
+                            <td>   </td>
+                            <td>   </td>
+                            <td>   </td>
+                            <td>
+
+                                <a class="btn btn-default" href="{{ path('shop') }}">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                                </a>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-success">
+                                    Checkout <span class="glyphicon glyphicon-play"></span>
+                                </button></td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                {% endif %}
         </div>
     </div>
 </div>

@@ -71,7 +71,11 @@
                                             <h4>{{ Weapons.price }} €</h4>
                                         </div>
                                         <div class="red">
-                                            <p>15 reviews</p>
+
+
+                                            <a class="btn btn-default" href="{{ path('cart_add',{'id' : Weapons.id }) }}">
+                                                <span class="glyphicon glyphicon-shopping-cart"></span> Add Cart
+                                            </a>
                                         </div>
                                     </div>
                                     <hr class="col-xs-12 col-sm-12 col-lg-12 col-md-12">

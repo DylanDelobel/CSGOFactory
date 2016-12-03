@@ -62,10 +62,6 @@ class WeaponRepository extends \Doctrine\ORM\EntityRepository
             ->where('w.price BETWEEN :min AND :max')
             ->setParameter('min', $priceMin)
             ->setParameter('max', $priceMax);
-        
-
-
-
 
         $firstResult = ($page - 1) * $max;
 
@@ -81,5 +77,18 @@ class WeaponRepository extends \Doctrine\ORM\EntityRepository
 
         return $paginator;
     }
+
+    public function findArray($array){
+        $dql = $this->createQueryBuilder('w');
+
+        $dql
+            ->where('w.id IN (:array)')
+            ->setParameter('array', $array)
+        ;
+
+        return $dql->getQuery()->getResult();
+    }
+
+
     
 }
