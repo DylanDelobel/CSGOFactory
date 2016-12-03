@@ -12,6 +12,9 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\HttpFoundation\Request;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
@@ -115,9 +118,40 @@ class ShopController extends Controller
     /**
      * @Route("/contact/", name="contact")
      */
-    public function contactAction()
+    public function contactAction(Request $request)
     {
-        return $this->render('ShopBundle:Contact:index.html.twig');
+        $name = $email = $subject = $data = null;
+
+        //$formContact =
+
+        $form = $this->createFormBuilder()
+            ->add('name', TextType::class)
+            ->add('email', EmailType::class)
+            ->add('subject', TextType::class)
+            ->add('message', TextareaType::class)
+            ->add('submit', SubmitType::class, array('label' => 'Submit'))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            //if($request->isMethod('POST')){
+            $name = $form['name']->getData();
+            $email = $form['email']->getData();
+            $subject = $form['subject']->getData();
+            $data = $form['message']->getData();
+
+            $message = \Swift_Message::newInstance()
+                ->setSubject($subject)
+                ->setFrom($email)
+                ->setTo('contact.csgo@gmail.com')
+                ->setBody($data." - ".$name);
+
+            $this->get('mailer')->send($message);
+        }
+
+        return $this->render('ShopBundle:Contact:index.html.twig', array('form' => $form->createView()
+        ));
     }
 }
 
