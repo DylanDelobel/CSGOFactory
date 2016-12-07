@@ -82,7 +82,7 @@
                             <td>   </td>
                             <td>   </td>
                             <td><h5>Subtotal<br>Estimated shipping</h5><h3>Total</h3></td>
-                            <td class="text-right"><h5><strong>{{ totalHT }}€<br>{{ totalHT * TVA }}€</strong></h5><h3>{{ totalHT + (totalHT * TVA) }}</h3></td>
+                            <td class="text-right"><h5><strong>{{ totalHT }}€<br>{{ totalHT * TVA }}€</strong></h5><h3>{{ totalHT + (totalHT * TVA) }} €</h3></td>
                         </tr>
                         <tr>
                             <td>   </td>
@@ -95,9 +95,11 @@
                                 </a>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-success">
-                                    Checkout <span class="glyphicon glyphicon-play"></span>
-                                </button></td>
+
+                                <a class="btn btn-success" href="{{ path('checkout_details') }}">
+                                    Complete Secure Checkout <span class="glyphicon glyphicon-play"></span>
+                                </a>
+
                         </tr>
                         </tfoot>
                     </table>
@@ -106,8 +108,4 @@
     </div>
 </div>
 
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
 {% endblock %}
