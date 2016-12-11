@@ -7,3 +7,8 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    redirectionListener:
+        class: CS\ShopBundle\Listener\RedirectionListener
+        arguments: ["@service_container","@session"]
+        tags:
+          - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
