@@ -115,12 +115,14 @@ class ShopController extends Controller
             ));
     }
 
+
     /**
      * @Route("/contact/", name="contact")
      */
+
     public function contactAction(Request $request)
     {
-        $name = $email = $subject = $data = null;
+        $cleanName = $cleanEmail = $cleanSubject = $cleanData = null;
 
         //$formContact =
 
@@ -141,13 +143,66 @@ class ShopController extends Controller
             $subject = $form['subject']->getData();
             $data = $form['message']->getData();
 
-            $message = \Swift_Message::newInstance()
-                ->setSubject($subject)
-                ->setFrom($email)
-                ->setTo('contact.csgo@gmail.com')
-                ->setBody($data." - ".$name);
+            //Clear var
+            $cleanName = filter_var($name, FILTER_SANITIZE_STRING);
+            $cleanEmail = filter_var($email, FILTER_SANITIZE_EMAIL);
+            $cleanSubject = filter_var($subject, FILTER_SANITIZE_STRING);
+            $cleanData = filter_var($data, FILTER_SANITIZE_STRING);
 
-            $this->get('mailer')->send($message);
+//            $transport = \Swift_SmtpTransport::newInstance('mail.smtp2go.com', 465, 'ssl')
+//                ->setUsername('contact.csgo@gmail.com')
+//                ->setPassword('ENUwbtS2COP9')
+//            ;
+//
+//
+//            $mailer = \Swift_Mailer::newInstance($transport);
+//
+//            $message = \Swift_Message::newInstance()
+//                ->setSubject($cleanSubject)
+//                ->setFrom($cleanEmail)
+//                //->setTo(array('contact.csgo@gmail.com' => 'toto'))
+//                ->setTo('contact.csgo@gmail.com')
+//                ->setCharset('utf-8')
+//                ->setContentType('text/html')
+//                ->setBody($cleanData);
+//
+//            //$result = $mailer->send($message);
+//            $this->get('mailer')->send($message);
+
+            //Transport for email
+            //$transport = \Swift_SendmailTransport::newInstance('C:\UwAmp\sendmail -bs');  // First method
+            $transport = \Swift_SmtpTransport::newInstance('mail.smtp2go.com', 587 )
+                ->setUsername('contact.csgo@gmail.com')
+                ->setPassword('ENUwbtS2COP9');
+            //$transport = \Swift_MailTransport::newInstance();
+
+
+            //Message object
+            $message = \Swift_Message::newInstance();
+            $message->setSubject($cleanSubject);
+            $message->setFrom(array(
+                $cleanEmail => $cleanName
+            ));
+            //$message->setFrom('alexandre.gublin66@gmail.com');
+            //$message->setTo(array('contact.csgo@gmail.com' => 'totoroot'));
+            $message->setTo('contact.csgo@gmail.com');
+            $message->setBody($cleanData);
+
+
+
+            $mailer = \Swift_Mailer::newInstance($transport);
+            $result = $mailer->send($message);
+            //$this->get('mailer')->send($message);
+
+
+
+
+            if($result > 0){
+                //message envoyé
+            }else{
+               //message d'erreur
+            }
+
         }
 
         return $this->render('ShopBundle:Contact:index.html.twig', array('form' => $form->createView()

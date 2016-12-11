@@ -67,10 +67,21 @@ fos_user:
     firewall_name: main
     user_class: CS\ShopBundle\Entity\User
 
+    from_email:
+        address: contact.csgo@gmail.com
+        sender_name: CSGOFactory
+
 # Swiftmailer Configuration
 swiftmailer:
-    transport: "%mailer_transport%"
-    host:      "%mailer_host%"
-    username:  "%mailer_user%"
-    password:  "%mailer_password%"
-    spool:     { type: memory }
+    transport: '%mailer_transport%'
+    host:      '%mailer_host%'
+    username:  '%mailer_user%'
+    password:  '%mailer_password%'
+    encryption: '%mailer_encryption%'
+    #delivery_address: contact.csgo@gmail.com
+    port: 465
+    auth_mode: ~
+    spool:
+        type: memory
+        path: ~
+    disable_delivery: false
