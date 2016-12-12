@@ -1,8 +1,3 @@
-# Learn more about services, parameters and containers at
-# http://symfony.com/doc/current/book/service_container.html
-parameters:
-#    parameter_name: value
-
 services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
@@ -12,3 +7,15 @@ services:
         arguments: ["@service_container","@session"]
         tags:
           - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+
+    shop_model.model_repository:
+        class: Doctrine\ORM\EntityRepository
+        factory: ['@doctrine.orm.default_entity_manager', getRepository]
+        arguments:
+            - CS\ShopBundle\Entity\Model
+
+    shop.menu_builder:
+        class: CS\ShopBundle\Menu\MenuBuilder
+        arguments: ["@knp_menu.factory","@shop_model.model_repository"]
+        tags:
+            - { name: knp_menu.menu_builder, method: createMainMenu, alias: main } # The alias is what is used to retrieve the menu
