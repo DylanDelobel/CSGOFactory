@@ -17,7 +17,7 @@
                         <h2>No address in address list</h2>
                         <p>Add new address</p>
                         <a class="btn btn-default" href="{{ path('checkout_details') }}">
-                            <span class="glyphicon glyphicon-shopping-cart"></span> Add Address
+                            <span class="glyphicon glyphicon-plus"></span> Add Address
                         </a>
                     </div>
                 </div>
@@ -60,26 +60,18 @@
                                 {% endfor %}
                             </div>
 
+                        <div class="row text-center">
+
+                            <input type="submit" class="btn btn-success" value="Choose this address">
+                            <a class="btn btn-info" href="{{ path('checkout_details') }}">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </a>
+
+                        </div>
                     </form>
                 </div>
 
-                <div class="col-sm-12 col-xs-12">
-                        <form action="">
 
-
-
-
-
-                            <div class="row text-center">
-
-                                <input type="submit" class="btn btn-success" value="Choose this address">
-                                <a class="btn btn-info" href="{{ path('checkout_details') }}">
-                                    <span class="glyphicon glyphicon-plus"></span>
-                                </a>
-
-                            </div>
-                        </form>
-                </div>
 
 
             {% endif %}
