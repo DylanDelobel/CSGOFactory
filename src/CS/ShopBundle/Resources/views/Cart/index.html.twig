@@ -14,11 +14,7 @@
            <p>{{ flashMessage }}</p>
         </div>
     {% endfor %}
-    <div class="row">
-        <div class="col-sm-12 col-md-10 col-md-offset-1">
 
-        </div>
-    </div>
     <div class="row">
         <div class="col-sm-12 col-md-10 col-md-offset-1">
             {% if listWeapons is empty %}
@@ -96,7 +92,7 @@
                             </td>
                             <td>
 
-                                <a class="btn btn-success" href="{{ path('checkout_details') }}">
+                                <a class="btn btn-success" href="{{ path('checkout_address') }}">
                                     Complete Secure Checkout <span class="glyphicon glyphicon-play"></span>
                                 </a>
 
