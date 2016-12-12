@@ -1,0 +1,98 @@
+{% extends 'ShopBundle::layout.html.twig' %}
+{% set TVA = 0.20 %}
+{% set totalHT = 0 %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/shop/homepage.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="row">
+            <div class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <address>
+                            <h4><strong>Address Delivery</strong></h4>
+                            <strong>{{ delivery.firstName }} {{ delivery.lastName }}</strong>
+                            <br>
+                            {{ delivery.streetAddress}}
+                            <br>
+                            {{ delivery.cp }} {{ delivery.city }} - {{ delivery.country }}
+                            <br>
+                            <abbr title="Phone">P:</abbr> {{ delivery.phone }}
+                        </address>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+                        <address>
+                            <h4><strong>Address Billing</strong></h4>
+                            <strong>{{ billing.firstName }} {{ billing.lastName }}</strong>
+                            <br>
+                            {{ billing.streetAddress}}
+                            <br>
+                            {{ billing.cp }} {{ billing.city }} - {{ billing.country }}
+                            <br>
+                            <abbr title="Phone">P:</abbr> {{ billing.phone }}
+                        </address>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="text-center">
+                        <h1>Receipt</h1>
+                    </div>
+                    </span>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th class="text-center">Price</th>
+                            <th class="text-center">Total</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for Weapons in listWeapons  %}
+                        <tr>
+                            <td class="col-md-9"><em>{{ Weapons.model.name }} {{ Weapons.name }}</em></td>
+                            <td class="col-md-1" style="text-align: center"> {{ cart[Weapons.id] }} </td>
+                            <td class="col-md-1 text-center">{{ Weapons.price }} €</td>
+                            <td class="col-md-1 text-center">{{ Weapons.price*cart[Weapons.id] }} €</td>
+                        </tr>
+                            {% set totalHT  = totalHT + (Weapons.price * cart[Weapons.id]) %}
+                        {% endfor %}
+                        <tr>
+                            <td>   </td>
+                            <td>   </td>
+                            <td class="text-right">
+                                <p>
+                                    <strong>Subtotal: </strong>
+                                </p>
+                                <p>
+                                    <strong>Tax: </strong>
+                                </p></td>
+                            <td class="text-center">
+                                <p>
+                                    <strong>{{ totalHT}} €</strong>
+                                </p>
+                                <p>
+                                    <strong>{{ totalHT * TVA }} €</strong>
+                                </p></td>
+                        </tr>
+                        <tr>
+                            <td>   </td>
+                            <td>   </td>
+                            <td class="text-right"><h4><strong>Total: </strong></h4></td>
+                            <td class="text-center text-danger"><h4><strong>{{ totalHT + (totalHT * TVA) }}€</strong></h4></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="btn btn-success btn-lg btn-block">
+                        Pay Now   <span class="glyphicon glyphicon-chevron-right"></span>
+                    </button></td>
+                </div>
+            </div>
+    </div>
+
+{% endblock %}

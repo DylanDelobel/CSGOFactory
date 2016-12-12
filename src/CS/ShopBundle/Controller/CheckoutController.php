@@ -119,6 +119,51 @@ class CheckoutController extends Controller
 
     }
 
+    public function setDeliveryOneSession($request){
+
+        $session = new Session();
+
+        if(!$session->has('address')){
+            $session->set('address',array());
+        }else{
+            $address = $session->get('address');
+        }
+
+        if ($request->request->get('Delivery') != null && $request->request->get('Billing') != null){
+            $address['Delivery'] = $request->request->get('Delivery');
+            $address['Billing'] = $request->request->get('Billing');
+        }else{
+            return $this->redirect($this->generateUrl('checkout_validation'));
+        }
+        $session->set('address',$address);
+
+        return $this->redirect($this->generateUrl('checkout_validation'));
+    }
+
+    /**
+     * @Route("/checkout/details/validation", name="checkout_validation")
+     */
+    public function validationAction(Request $request)
+    {
+        if ($request->getMethod() == 'POST'){
+            $this->setDeliveryOneSession($request);
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $session = new Session();
+
+        $address = $session->get('address');
+
+        $cart = $session->get('cart');
+        $listWeapons = $em->getRepository('ShopBundle:Weapon')->findArray(array_keys($cart));
+        $delivery = $em->getRepository('ShopBundle:UsersAdressesInfo')->find($address['Delivery']);
+        $billing = $em->getRepository('ShopBundle:UsersAdressesInfo')->find($address['Billing']);
+
+
+
+        return $this->render('ShopBundle:Checkout:validation.html.twig', array('listWeapons' => $listWeapons, 'delivery' =>$delivery, 'billing' =>$billing, 'cart' => $cart));
+    }
+
     /**
      * @Route("/checkout/details/delete/{id}", name="address_delete")
      */
@@ -128,11 +173,20 @@ class CheckoutController extends Controller
 
         $infoUserDelete = $em->getRepository('ShopBundle:UsersAdressesInfo')->find($id);
 
+        //Verfi si l'utilisateur qui suprimer est bien celui connecter
+        if ($this->container->get('security.token_storage')->getToken()->getUser() != $infoUserDelete->getUser() || !$infoUserDelete){
+            return $this->redirectToRoute('checkout_address');
+        }
+
         $em->remove($infoUserDelete);
         $em->flush();
 
         return $this->redirectToRoute('checkout_address');
     }
+
+
+
+
 
 
 }

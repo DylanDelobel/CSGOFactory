@@ -8,8 +8,6 @@
 
         <div class="container">
 
-
-
             {% if infosUser is empty %}
 
                 <div class="col-sm-12 col-md-10 col-md-offset-1">
@@ -27,12 +25,13 @@
                 <h2>Select Your Address</h2>
                 <div class="row">
                     <h4>Delivery address</h4>
-                    <form action="">
+
+                    <form action="{{ path('checkout_validation') }}" method="POST">
                         <div class="funkyradio">
                             {% for userInfo in infosUser %}
                                 <div class="funkyradio-success">
                                     <div class="col-sm-10 col-xs-10">
-                                        <input type="radio" name="radioDelivery" id="radioDelivery{{ userInfo.id }}" value="{{ userInfo.id }}" />
+                                        <input type="radio" name="Delivery" id="radioDelivery{{ userInfo.id }}" value="{{ userInfo.id }}" />
                                         <label for="radioDelivery{{ userInfo.id }}">{{ userInfo.firstName }} {{ userInfo.lastName }} {{ userInfo.streetAddress }} {{ userInfo.city }} {{ userInfo.cp }} {{ userInfo.country }}</label>
                                     </div>
 
@@ -49,7 +48,7 @@
                                 {% for userInfo in infosUser %}
                                     <div class="funkyradio-success">
                                         <div class="col-sm-10 col-xs-10">
-                                            <input type="radio" name="radioBilling" id="radioBilling{{ userInfo.id }}" value="{{ userInfo.id }}" />
+                                            <input type="radio" name="Billing" id="radioBilling{{ userInfo.id }}" value="{{ userInfo.id }}" />
                                             <label for="radioBilling{{ userInfo.id }}">{{ userInfo.firstName }} {{ userInfo.lastName }} {{ userInfo.streetAddress }} {{ userInfo.city }} {{ userInfo.cp }} {{ userInfo.country }}</label>
                                         </div>
 
