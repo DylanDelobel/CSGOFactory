@@ -17,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 
 class ShopController extends Controller
@@ -83,7 +84,7 @@ class ShopController extends Controller
         // Si la requête est en POST
         if($request->isMethod('POST')){
             $form->handleRequest($request);
-            
+
             $search = $form['search']->getData();
             $wear = $form['wear']->getData();
             $priceMin = $form['priceMin']->getData();
@@ -122,7 +123,7 @@ class ShopController extends Controller
 
     public function contactAction(Request $request)
     {
-        $cleanName = $cleanEmail = $cleanSubject = $cleanData = null;
+        $cleanName = $cleanEmail = $cleanSubject = $cleanData = $result = null;
 
         //$formContact =
 
@@ -197,15 +198,20 @@ class ShopController extends Controller
 
 
 
-            if($result > 0){
-                //message envoyé
+            if($result == 1){
+                $session = new Session();
+                $session->getFlashBag()->add('notificationEmail','Email sent.');
+
             }else{
-               //message d'erreur
+                $session = new Session();
+                $session->getFlashBag()->add('notificationEmail',"Error, mail not sent.");
+                $result = 0;
             }
 
         }
 
-        return $this->render('ShopBundle:Contact:index.html.twig', array('form' => $form->createView()
+        return $this->render('ShopBundle:Contact:index.html.twig', array('form' => $form->createView(),
+            'result' => $result
         ));
     }
 }
