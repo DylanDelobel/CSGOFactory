@@ -3,7 +3,7 @@
 namespace CS\ShopBundle\Controller;
 
 
-use CS\ShopBundle\Entity\User;
+use CS\ShopBundle\Entity\OrderC;
 use CS\ShopBundle\Entity\UsersAdressesInfo;
 use CS\ShopBundle\ShopBundle;
 use Doctrine\ORM\Query\Expr\From;
@@ -14,7 +14,10 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
+use CS\ShopBundle\Entity\User;
+use CS\ShopBundle\Entity\Weapon;
 
 
 
@@ -148,20 +151,13 @@ class CheckoutController extends Controller
         if ($request->getMethod() == 'POST'){
             $this->setDeliveryOneSession($request);
         }
-
         $em = $this->getDoctrine()->getManager();
-        $session = new Session();
 
-        $address = $session->get('address');
-
-        $cart = $session->get('cart');
-        $listWeapons = $em->getRepository('ShopBundle:Weapon')->findArray(array_keys($cart));
-        $delivery = $em->getRepository('ShopBundle:UsersAdressesInfo')->find($address['Delivery']);
-        $billing = $em->getRepository('ShopBundle:UsersAdressesInfo')->find($address['Billing']);
+        $pOrder = $this->forward('ShopBundle:Checkout:preparesOrder');
+        $order = $em->getRepository('ShopBundle:OrderC')->find($pOrder->getContent());
 
 
-
-        return $this->render('ShopBundle:Checkout:validation.html.twig', array('listWeapons' => $listWeapons, 'delivery' =>$delivery, 'billing' =>$billing, 'cart' => $cart));
+        return $this->render('ShopBundle:Checkout:validation.html.twig', array('listOrder' => $order ));
     }
 
     /**
@@ -184,6 +180,92 @@ class CheckoutController extends Controller
         return $this->redirectToRoute('checkout_address');
     }
 
+    public function bill(){
+
+        $em = $this->getDoctrine()->getManager();
+
+        $session = new Session();
+        $adresse = $session->get('address');
+        $cart = $session->get('cart');
+        $order = array();
+        $totalHT = 0;
+        $totalTTC = 0;
+
+        $delivery = $em->getRepository('ShopBundle:UsersAdressesInfo')->find($adresse['Delivery']);
+        $billing = $em->getRepository('ShopBundle:UsersAdressesInfo')->find($adresse['Billing']);
+        $listWeapons = $em->getRepository('ShopBundle:Weapon')->findArray(array_keys($session->get('cart')));
+
+
+
+
+        foreach($listWeapons as $weapons)
+        {
+            $priceHT = $weapons->getPrice() * $cart[$weapons->getId()];
+            $priceTTC = ($weapons->getPrice() * $cart[$weapons->getId()] * (1.20));
+            $totalHT += $priceHT;
+            $totalTTC += $priceTTC;
+
+
+
+            $order['weapons'][$weapons->getId()] = array('Name' => $weapons->getName(),
+                'quantite' => $cart[$weapons->getId()],
+                'prixHT' => round($weapons->getPrice(),2),
+                'prixTTC' => round($weapons->getPrice() * (1.20)));
+        }
+
+        $order['Delivery'] = array('firstName' => $delivery->getFirstName(),
+            'lastName' => $delivery->getLastName(),
+            'phone' => $delivery->getPhone(),
+            'adresse' => $delivery->getStreetAddress(),
+            'cp' => $delivery->getCp(),
+            'city' => $delivery->getCity(),
+            'country' => $delivery->getCountry(),
+            'emailPro' => $delivery->getEmailPro());
+        $order['Billing'] = array('firstName' => $billing->getFirstName(),
+            'lastName' => $billing->getLastName(),
+            'phone' => $billing->getPhone(),
+            'adresse' => $billing->getStreetAddress(),
+            'cp' => $billing->getCp(),
+            'city' => $billing->getCity(),
+            'country' => $billing->getCountry(),
+            'emailPro' => $billing->getEmailPro());
+
+
+        $order['prixHT'] = round($totalHT,2);
+        $order['prixTTC'] = round($totalTTC,2);
+
+
+        return $order;
+    }
+
+    public function preparesOrderAction()
+    {
+        $session = new Session();
+        $em = $this->getDoctrine()->getManager();
+
+        if (!$session->has('order')){
+            $order = new OrderC();
+        }else{
+            $order = $em->getRepository('ShopBundle:OrderC')->find($session->get('order'));
+        }
+
+        $order->setDate(new \DateTime());
+        $order->setUser($this->container->get('security.token_storage')->getToken()->getUser());
+        $order->setValidate(0);
+        $order->setRef(0);
+        $order->setListOrder($this->bill());
+
+
+        if (!$session->has('order')) {
+            $em->persist($order);
+            $session->set('order',$order);
+        }
+
+        $em->flush();
+
+        return new Response($order->getId());
+
+    }
 
 
 
