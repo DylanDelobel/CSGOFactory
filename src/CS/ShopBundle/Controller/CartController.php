@@ -2,12 +2,7 @@
 
 namespace CS\ShopBundle\Controller;
 
-use CS\ShopBundle\Entity\Weapon;
-use CS\ShopBundle\ShopBundle;
-use Doctrine\ORM\Query\Expr\From;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 

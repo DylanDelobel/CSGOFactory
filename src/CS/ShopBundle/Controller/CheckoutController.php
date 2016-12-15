@@ -5,10 +5,7 @@ namespace CS\ShopBundle\Controller;
 
 use CS\ShopBundle\Entity\OrderC;
 use CS\ShopBundle\Entity\UsersAdressesInfo;
-use CS\ShopBundle\ShopBundle;
-use Doctrine\ORM\Query\Expr\From;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -16,8 +13,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
-use CS\ShopBundle\Entity\User;
-use CS\ShopBundle\Entity\Weapon;
 
 
 

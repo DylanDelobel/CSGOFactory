@@ -2,16 +2,11 @@
 
 namespace CS\ShopBundle\Controller;
 
-use CS\ShopBundle\Entity\Weapon;
-use CS\ShopBundle\ShopBundle;
-use Doctrine\ORM\Query\Expr\From;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Session\Session;
 

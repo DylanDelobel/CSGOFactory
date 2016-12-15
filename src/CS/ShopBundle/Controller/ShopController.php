@@ -2,21 +2,12 @@
 
 namespace CS\ShopBundle\Controller;
 
-use CS\ShopBundle\Entity\Weapon;
-use CS\ShopBundle\ShopBundle;
-use Doctrine\ORM\Query\Expr\From;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\HttpFoundation\Session\Session;
 
 
 class ShopController extends Controller
@@ -26,10 +17,6 @@ class ShopController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $collection2 = $em->getRepository('ShopBundle:Collection')->findOneById(66);
-
         $repository = $this->getDoctrine()->getRepository('ShopBundle:Collection');
 
         $collection = $repository->findOneById(66);
@@ -42,16 +29,6 @@ class ShopController extends Controller
      */
     public function shopAction(Request $request)
     {
-
-        $em = $this->getDoctrine()->getManager();
-
-        $modelRepository = $em->getRepository('ShopBundle:Model');
-        $weaponRepository = $em->getRepository('ShopBundle:Weapon');
-
-        //$id = $modelRepository->findOneByName($model)->getId();
-        $listWeapons = $weaponRepository->findByModel(263);
-
-
         //Entity Manager
         $em = $this->getDoctrine()->getManager();
 
@@ -98,19 +75,13 @@ class ShopController extends Controller
             $wear = $form['wear']->getData();
             $priceMin = $form['priceMin']->getData();
             $priceMax = $form['priceMax']->getData();
-
-
         }
 
         if(($search != null) | ($wear != null) | ($priceMin != null) | ($priceMax != null)){
             $listWeapons = $em->getRepository('ShopBundle:Weapon')->findSearchPagine($priceMin, $priceMax, $request->query->getInt('page', 1), 12);
+        }else{
+            $listWeapons = $em->getRepository('ShopBundle:Weapon')->findAllPagine($request->query->getInt('page', 1), 12);
         }
-
-
-
-
-
-
 
         return $this->render('ShopBundle:Shop:index.html.twig',
             array(
@@ -121,26 +92,18 @@ class ShopController extends Controller
                 'priceMin' => $priceMin,
                 'priceMax' => $priceMax
             ));
-
-
     }
     /**
      * @Route("/shop/{family}/{model}", name="catalog")
      */
     public function catalogAction(Request $request, $family, $model)
     {
-
+        //Entity Manager
         $em = $this->getDoctrine()->getManager();
 
         $modelRepository = $em->getRepository('ShopBundle:Model');
-        $weaponRepository = $em->getRepository('ShopBundle:Weapon');
 
         $id = $modelRepository->findOneByName($model)->getId();
-        //$listWeapons = $weaponRepository->findByModel(263);
-
-
-        //Entity Manager
-        $em = $this->getDoctrine()->getManager();
 
         // On crée le FormBuilder
         $formBuilder = $this->createFormBuilder();
@@ -185,8 +148,6 @@ class ShopController extends Controller
             $wear = $form['wear']->getData();
             $priceMin = $form['priceMin']->getData();
             $priceMax = $form['priceMax']->getData();
-
-
         }
 
         if(($search != null) | ($wear != null) | ($priceMin != null) | ($priceMax != null)){
@@ -195,12 +156,6 @@ class ShopController extends Controller
             $listWeapons = $em->getRepository('ShopBundle:Weapon')->findByModelId($id, $request->query->getInt('page', 1), 12);
         }
 
-
-
-
-
-
-
         return $this->render('ShopBundle:Shop:index.html.twig',
             array(
                 'listWeapons' => $listWeapons,
@@ -210,8 +165,6 @@ class ShopController extends Controller
                 'priceMin' => $priceMin,
                 'priceMax' => $priceMax
             ));
-
-
     }
 
 }
