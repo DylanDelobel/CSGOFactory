@@ -157,6 +157,7 @@ class CheckoutController extends Controller
         $order = $em->getRepository('ShopBundle:OrderC')->find($pOrder->getContent());
 
 
+
         return $this->render('ShopBundle:Checkout:validation.html.twig', array('listOrder' => $order ));
     }
 
@@ -265,6 +266,30 @@ class CheckoutController extends Controller
 
         return new Response($order->getId());
 
+    }
+
+    /**
+     * @Route("/checkout/details/validation/buy/{id}", name="checkout_buy")
+     */
+    public function buyPaypalValidationAction($id){
+
+
+        $em = $this->getDoctrine()->getManager();
+        $order = $em->getRepository('ShopBundle:OrderC')->find($id);
+
+        if (!$order || $order->getValidate() == 1){
+            throw $this->createNotFoundException("The order don't exist");
+        }
+        $session = new Session();
+        $session->remove('address');
+        $session->remove('cart');
+        $session->remove('order');
+
+        $order->setValidate(1);
+        $em->persist($order);
+        $em->flush();
+
+        return $this->render('ShopBundle:Checkout:billing.html.twig',array('order' => $order));
     }
 
 

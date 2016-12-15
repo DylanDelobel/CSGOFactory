@@ -1,0 +1,32 @@
+{% extends 'ShopBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+<link href="{{ asset('css/shop/checkout.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="box">
+                <div class="box-icon">
+                    <span class="fa fa-4x fa-html5"></span>
+                </div>
+                <div class="info ">
+                    <h4 class="text-center">Billing</h4>
+                    <p>You have successfully purchased, Collect your invoice in PDF</p>
+                    <a href="" class="btn">PDF</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+{% endblock %}

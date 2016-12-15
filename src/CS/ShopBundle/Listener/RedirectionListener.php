@@ -20,7 +20,7 @@ class RedirectionListener
         //On recuper la route courant
         $route = $event->getRequest()->attributes->get('_route');
 
-        if ($route == 'checkout_details' || $route == 'checkout_validation' || $route == 'checkout_address') {
+        if ($route == 'checkout_details' || $route == 'checkout_validation' || $route == 'checkout_address' || $route == 'checkout_buy' || $route == 'address_delete') {
             if ($this->session->has('cart')) {
                 if (count($this->session->get('cart')) == 0){
                     $event->setResponse(new RedirectResponse($this->router->generate('cart')));

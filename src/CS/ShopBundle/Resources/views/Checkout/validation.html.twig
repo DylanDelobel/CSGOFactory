@@ -88,9 +88,49 @@
                         </tr>
                         </tbody>
                     </table>
-                    <button type="button" class="btn btn-success btn-lg btn-block">
-                        Pay Now   <span class="glyphicon glyphicon-chevron-right"></span>
-                    </button></td>
+
+
+                    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="POST">
+                        <!--Prix ht ou total a payer-->
+                        <input type='hidden' value="{{ listOrder.listOrder.prixHT }}" name="amount" />
+                        <!--Type de monnaie-->
+                        <input name="currency_code" type="hidden" value="EUR" />
+                        <!--Frais de port-->
+                        <input name="shipping" type="hidden" value="0.00" />
+                        <!--Taxe (tva) Mais pas besoin si on le met dans total a payer-->
+                        <input name="tax" type="hidden" value="{{ listOrder.listOrder.prixHT * TVA }}" />
+
+                        <!--Pge de redirection lors de la validation paiement -->
+                        <input name="return" type="hidden" value="http://127.0.0.1/Symfony/CSGOFactory/web/app_dev.php/checkout/details/validation/buy/{{ listOrder.id }}" />
+                        <!--Page de redirection si l'acheteur annule-->
+                        <input name="cancel_return" type="hidden" value="http://votredomaine/paiementAnnule.php" />
+                        <!--Page qui traitera les info envoyer par paypal aprés le paiement de l'user-->
+                        <input name="notify_url" type="hidden" value="http://127.0.0.1/Symfony/CSGOFactory/web/app_dev.php/checkout/details/validation/buy/{{ listOrder.id }}" />
+
+                        <!--Parametre qui permet de defini le button comme un btn acheter-->
+                        <input name="cmd" type="hidden" value="_xclick" />
+
+                        <!--Adresse email du compte buissness-->
+                        <input name="business" type="hidden" value="contact.csgo-facilitator@gmail.com" />
+
+
+                        <!--Nom du produit et des produit vendu (éviter les accents)-->
+                        <input name="item_name" type="hidden" value="pack CsgoFactory" />
+
+                        <!--Permet d'eviter le commentaire des utilisateur sur le passage du paiement-->
+                        <input name="no_note" type="hidden" value="1" />
+                        <!--Langue du formulaire paypal qui va suivre-->
+                        <input name="lc" type="hidden" value="FR" />
+                        <!--parametre paypal a pas toucher-->
+                        <input name="bn" type="hidden" value="PP-BuyNowBF" />
+                        <!--id de la session utilisateur-->
+                        <input name="custom" type="hidden" value="{{ listOrder.id }}" />
+
+                        <input type="submit" name="proceed" value="Pay Now" class="btn btn-success btn-lg btn-block" href="">
+
+                    </form>
+
+
                 </div>
             </div>
     </div>
