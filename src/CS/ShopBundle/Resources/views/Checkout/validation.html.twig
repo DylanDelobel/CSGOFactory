@@ -113,6 +113,16 @@
                         <!--Adresse email du compte buissness-->
                         <input name="business" type="hidden" value="contact.csgo-facilitator@gmail.com" />
 
+                        <!--Adresse de livraison-->
+                        <input type="hidden" name="first_name" value="{{ listOrder.listOrder.Delivery.firstName }}">
+                        <input type="hidden" name="last_name" value="{{ listOrder.listOrder.Delivery.lastName }}">
+                        <input type="hidden" name="address1" value="{{ listOrder.listOrder.Delivery.adresse }}">
+                        <input type="hidden" name="city" value="{{ listOrder.listOrder.Delivery.city }}">
+                        <input type="hidden" name="state" value="{{ listOrder.listOrder.Delivery.country }}">
+                        <input type="hidden" name="zip" value="{{ listOrder.listOrder.Delivery.cp }}">
+                        <input type="hidden" name="night_phone_a" value="{{ listOrder.listOrder.Delivery.phone }}">
+                        <!--Adresse email du client-->
+                        <input type="hidden" name="email" value="{{ listOrder.listOrder.Delivery.emailPro }}">
 
                         <!--Nom du produit et des produit vendu (éviter les accents)-->
                         <input name="item_name" type="hidden" value="pack CsgoFactory" />
@@ -133,6 +143,6 @@
 
                 </div>
             </div>
+        </div>
     </div>
-
 {% endblock %}

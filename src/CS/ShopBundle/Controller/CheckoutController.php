@@ -289,8 +289,37 @@ class CheckoutController extends Controller
         $em->persist($order);
         $em->flush();
 
-        return $this->render('ShopBundle:Checkout:billing.html.twig',array('order' => $order));
+
+
+        return $this->render('ShopBundle:Checkout:billing.html.twig',array('orderId' => $id));
     }
+
+    /**
+     * @Route("/checkout/details/validation/pdf/{id}", name="checkout_pdf")
+     * @return Response
+     */
+    public function htmlToPdfAction($id){
+        $em = $this->getDoctrine()->getManager();
+
+        $pOrder = $this->forward('ShopBundle:Checkout:preparesOrder');
+        $order = $em->getRepository('ShopBundle:OrderC')->find($id);
+
+        $snappy = $this->get('knp_snappy.pdf');
+        $html = $this->renderView('ShopBundle:Checkout:orderPdf.html.twig', array('order' => $order));
+
+        $fileName = 'myFirstSnappyPDF';
+
+        return new Response(
+            $snappy->getOutputFromHtml($html),
+            200,
+            array(
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'inline; filename="'.$fileName.'.pdf"'
+            )
+        );
+
+    }
+
 
 
 

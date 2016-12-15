@@ -12,13 +12,11 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="box">
-                <div class="box-icon">
-                    <span class="fa fa-4x fa-html5"></span>
-                </div>
+
                 <div class="info ">
                     <h4 class="text-center">Billing</h4>
                     <p>You have successfully purchased, Collect your invoice in PDF</p>
-                    <a href="" class="btn">PDF</a>
+                    <a href="{{ path('checkout_pdf',{'id' : orderId }) }}" class="btn">PDF</a>
                 </div>
             </div>
         </div>
