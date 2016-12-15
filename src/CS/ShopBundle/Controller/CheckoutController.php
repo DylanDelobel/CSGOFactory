@@ -13,6 +13,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+
 
 
 
@@ -302,7 +304,7 @@ class CheckoutController extends Controller
         $snappy = $this->get('knp_snappy.pdf');
         $html = $this->renderView('ShopBundle:Checkout:orderPdf.html.twig', array('order' => $order));
 
-        $fileName = 'myFirstSnappyPDF';
+        $fileName = 'BillingCSGOFactory';
 
         return new Response(
             $snappy->getOutputFromHtml($html),
