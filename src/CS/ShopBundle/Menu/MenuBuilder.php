@@ -31,7 +31,10 @@ class MenuBuilder
 
         foreach ($models as $model) {
             $menu[$model->getFamily()->getName()]->addChild($model->getName(),
-                array('uri' => 'shop/'.$model->getFamily()->getName().'/'.$model->getName()));
+                array('route' => 'catalog', 'routeParameters' => array(
+                    'family' => $model->getFamily()->getName(),
+                    'model' => $model->getName()
+                )));
         }
 
         return $menu;
