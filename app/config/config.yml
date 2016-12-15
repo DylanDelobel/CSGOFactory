@@ -91,6 +91,8 @@ fos_user:
             from_email:
                 address:        contact.csgo@gmail.com
                 sender_name:    CSGOFactory
+            #template: templateEmail.html.twig
+
     resetting:
         email:
             from_email:
@@ -105,9 +107,9 @@ swiftmailer:
     username:   "%mailer_user%"
     password:   "%mailer_password%"
     spool:      { type: memory }
-#    port:       ~
-#    auth_mode:  login
-#    encryption: ssl
+    port:       ~
+    auth_mode:  login
+    encryption: ssl
 
 
 #    transport: '%mailer_transport%'
