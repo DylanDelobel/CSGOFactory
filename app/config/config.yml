@@ -119,3 +119,22 @@ swiftmailer:
 #    #port: 465
 #    auth_mode: login
 #    spool:      { type: memory }
+
+knp_snappy:
+    temporary_folder: %kernel.cache_dir%/snappy
+    pdf:
+        enabled:    true
+        # If you have wkhtmltopdf as an environment variable you don't need to provide the
+        # full path to the executable, use it in the same way as you use in the console
+        #binary:  "wkhtmltopdf"
+        binary:     "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\""
+        options:
+              no-outline: true
+              page-size: LETTER
+              # Recommended to set UTF-8 as default encoding :)
+              encoding: UTF-8
+    image:
+        enabled:    true
+        #binary:  "wkhtmltopdf"
+        binary:     "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe\""
+        options:    []
