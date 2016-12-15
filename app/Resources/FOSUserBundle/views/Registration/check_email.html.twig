@@ -15,10 +15,11 @@
         </div>
         <div class="row">
             <div class="well col-sm-offset-3 col-lg-offset-3 col-md-offset-3 col-sm-6 col-lg-6 col-md-6">
-                <p id="text">{{ 'To activate your account please confirm your email address by clicking on the send link.'|trans({'%email%': user.email}) }}</p>
+                <h4>Check you email address :</h4>
+                <p>To activate your account, please confirm your email address by clicking on the send link to {{ user.email }}.</p>
+                <br/>
+                <p>To continue click <a href="{{ path('shop') }}">her</a>.</p>
             </div>
         </div>
     </div>
-
-    {#<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>#}
 {% endblock fos_user_content %}
