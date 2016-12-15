@@ -13,11 +13,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class ContactController extends Controller
 {
-
+    
     /**
      * @Route("/contact/", name="contact")
      */
-
     public function contactAction(Request $request)
     {
         $cleanName = $cleanEmail = $cleanSubject = $cleanData = $result = null;
@@ -47,33 +46,6 @@ class ContactController extends Controller
             $cleanSubject = filter_var($subject, FILTER_SANITIZE_STRING);
             $cleanData = filter_var($data, FILTER_SANITIZE_STRING);
 
-//            $transport = \Swift_SmtpTransport::newInstance('mail.smtp2go.com', 465, 'ssl')
-//                ->setUsername('contact.csgo@gmail.com')
-//                ->setPassword('ENUwbtS2COP9')
-//            ;
-//
-//
-//            $mailer = \Swift_Mailer::newInstance($transport);
-//
-//            $message = \Swift_Message::newInstance()
-//                ->setSubject($cleanSubject)
-//                ->setFrom($cleanEmail)
-//                //->setTo(array('contact.csgo@gmail.com' => 'toto'))
-//                ->setTo('contact.csgo@gmail.com')
-//                ->setCharset('utf-8')
-//                ->setContentType('text/html')
-//                ->setBody($cleanData);
-//
-//            //$result = $mailer->send($message);
-//            $this->get('mailer')->send($message);
-
-            //Transport for email
-            //$transport = \Swift_SendmailTransport::newInstance('C:\UwAmp\sendmail -bs');  // First method
-            $transport = \Swift_SmtpTransport::newInstance('mail.smtp2go.com', 587 )
-                ->setUsername('contact.csgo@gmail.com')
-                ->setPassword('ENUwbtS2COP9');
-            //$transport = \Swift_MailTransport::newInstance();
-
 
             //Message object
             $message = \Swift_Message::newInstance();
@@ -85,12 +57,8 @@ class ContactController extends Controller
             //$message->setTo(array('contact.csgo@gmail.com' => 'totoroot'));
             $message->setTo('contact.csgo@gmail.com');
             $message->setBody($cleanData);
-
-
-
-            $mailer = \Swift_Mailer::newInstance($transport);
-            $result = $mailer->send($message);
-            //$this->get('mailer')->send($message);
+            
+            $result = $this->get('mailer')->send($message);
 
 
             $session = new Session();
