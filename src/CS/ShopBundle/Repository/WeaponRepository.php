@@ -89,6 +89,30 @@ class WeaponRepository extends \Doctrine\ORM\EntityRepository
         return $dql->getQuery()->getResult();
     }
 
+    public function findByModelId($id){
+        $dql = $this->createQueryBuilder('w');
+
+        $dql
+            ->where('w.model IN (:id)')
+            ->setParameter('id', $id)
+        ;
+        $page = 1;
+        $max = 5;
+        $firstResult = ($page - 1) * $max;
+
+        $query = $dql->getQuery();
+        $query->setFirstResult($firstResult);
+        $query->setMaxResults($max);
+
+        $paginator = new Paginator($query);
+
+        if(($paginator->count() <=  $firstResult) && $page != 1) {
+            throw new NotFoundHttpException('Page not found');
+        }
+
+        return $paginator;
+    }
+
 
     
 }
