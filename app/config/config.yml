@@ -61,27 +61,61 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
 
+#fos_user:
+#    db_driver: orm
+#    firewall_name: main
+#    user_class: CMS\UserBundle\Entity\User
+#    service:
+#        user_manager: cms_user.my_user_manager
+#        mailer: fos_user.mailer.twig_swift
+#    registration:
+#        form:
+#            type: cms_frontbundle_inscriptiontype
+#        confirmation:
+#            enabled:    true
+#            template: CMSUserundle:Default:registration.email.twig
+#            from_email:
+#                address:        gilbert.armengaud@gmail.com
+#                sender_name:    StartCMS Gilbert ARMENGAUD
+
 
 fos_user:
     db_driver: orm
     firewall_name: main
     user_class: CS\ShopBundle\Entity\User
+    service:
+        mailer: fos_user.mailer.twig_swift
+    registration:
+        confirmation:
+            enabled: true
+            from_email:
+                address:        contact.csgo@gmail.com
+                sender_name:    CSGOFactory
+    resetting:
+        email:
+            from_email:
+                address:        contact.csgo@gmail.com
+                sender_name:    CSGOFactory
 
-    from_email:
-        address: contact.csgo@gmail.com
-        sender_name: CSGOFactory
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: '%mailer_transport%'
-    host:      '%mailer_host%'
-    username:  '%mailer_user%'
-    password:  '%mailer_password%'
-    encryption: ssl
-    #delivery_address: contact.csgo@gmail.com
-    port: 465
-    auth_mode: ~
-    spool:
-        type: memory
-        path: ~
-    disable_delivery: false
+    transport:  "%mailer_transport%"
+    host:       "%mailer_host%"
+    username:   "%mailer_user%"
+    password:   "%mailer_password%"
+    spool:      { type: memory }
+#    port:       ~
+#    auth_mode:  login
+#    encryption: ssl
+
+
+#    transport: '%mailer_transport%'
+#    host:      '%mailer_host%'
+#    username:  '%mailer_user%'
+#    password:  '%mailer_password%'
+#    encryption: ssl
+#    #delivery_address: contact.csgo@gmail.com
+#    #port: 465
+#    auth_mode: login
+#    spool:      { type: memory }
