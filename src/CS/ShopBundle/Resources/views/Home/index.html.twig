@@ -8,21 +8,6 @@
 
     <div class="container">
 
-        <!-- Jumbotron Header -->
-        <header class="jumbotron hero-spacer">
-            <h1>Crate of the day</h1>
-            <div class="col-md-3">
-                <img class="responsive" src="http://placehold.it/150x150" alt="">
-            </div>
-            <div class="col-md-9">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
-            <p>
-            </div>
-            <a class="btn btn-primary btn-large">Buy now!</a>
-        </header>
-
-        <hr>
-
         {% if listCollection is empty %}
         <div class="row">
             <div class="col-lg-12">
@@ -42,8 +27,8 @@
 
                 <!-- Page Features -->
                 <div class="row text-center">
-
-                    {% for Weapons in listWeapons %}
+                {% set i = loop.index - 1 %}
+                    {% for Weapons in listWeapons[i] %}
 
                     <div class="col-md-3 col-sm-6 hero-feature">
                         <div class="thumbnail">

@@ -29,20 +29,10 @@ class ShopController extends Controller
                 1
             );
 
-        // $repositoryWeapon = $this->getDoctrine()->getRepository('ShopBundle:Weapon');
-
-        // $listWeapons = $repositoryWeapon->findBy(
-        //     array(),
-        //     array('date' => 'desc'),
-        //     4,
-        //     1
-        // );
-
         foreach ($listCollection as $uneCollection){
             $id = $repositoryCollection->findOneByName($uneCollection->getName())->getId();
-            $listWeapons = $em->getRepository('ShopBundle:Weapon')->findByCollectionId($id);
+            $listWeapons[] = $em->getRepository('ShopBundle:Weapon')->findByCollectionId($id);
         }
-        
 
         return $this->render(
             'ShopBundle:Home:index.html.twig', 

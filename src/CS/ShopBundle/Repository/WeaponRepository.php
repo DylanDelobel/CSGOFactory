@@ -19,6 +19,7 @@ class WeaponRepository extends \Doctrine\ORM\EntityRepository
         $dql
             ->where('w.collection IN (:id)')
             ->setParameter('id', $id)
+            ->setMaxResults(4)
         ;
 
 
