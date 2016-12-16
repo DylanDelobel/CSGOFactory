@@ -1,0 +1,71 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/shop/createAccount.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+<div class="container">
+    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+    <div class="row">
+        <div class="col-sm-offset-3 col-lg-offset-3 col-md-offset-3">
+            <h2 class="logo">Sign up now</h2>
+        </div>
+    </div><br/>
+    <div class="well col-sm-offset-3 col-lg-offset-3 col-md-offset-3 col-sm-6 col-lg-6 col-md-6">
+        <div class="row">
+            <div class="form-group" id="email">
+                <div class="col-sm-offset-1 col-lg-offset-1 col-md-offset-1 col-sm-10 col-lg-10 col-md-10">
+                    {{ form_label(form.email, null, {
+                        'label': 'Email'
+                    }) }}
+                    {{ form_errors(form.email) }}
+                    {{ form_widget(form.email, {
+                        'attr' : {'placeholder' : 'Email'}
+                    }) }}
+                </div>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-offset-1 col-lg-offset-1 col-md-offset-1 col-sm-10 col-lg-10 col-md-10">
+                    {{ form_label(form.username, null, {
+                        'label': 'Username'
+                    }) }}
+                    {{ form_errors(form.username) }}
+                    {{ form_widget(form.username, {
+                        'attr' : {'placeholder' : 'Username'}
+                    }) }}
+
+                </div>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-offset-1 col-lg-offset-1 col-md-offset-1 col-sm-10 col-lg-10 col-md-10">
+                    {{ form_label(form.plainPassword.first, null, {'label': 'Password' }) }}
+                    {{ form_errors(form.plainPassword.first) }}
+                    {{ form_widget(form.plainPassword.first, {
+                        'attr' : {'placeholder' : 'Password'}
+                    }) }}
+                </div>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-offset-1 col-lg-offset-1 col-md-offset-1 col-sm-10 col-lg-10 col-md-10">
+                    {{ form_label(form.plainPassword.second, null, {'label': 'Password confirmation' }) }}
+                    {{ form_errors(form.plainPassword.second) }}
+                    {{ form_widget(form.plainPassword.second, {
+                        'attr' : {'placeholder' : 'Password confirmation'}
+                    }) }}
+                </div>
+            </div>
+        </div><br>
+        <div class="col-sm-offset-8 col-lg-offset-8 col-md-offset-8 ">
+            <input type="submit" value="{{ 'Create Account'|trans }}" class="btn btn-success" />
+        </div>
+        {{ form_end(form) }}
+        <br/>
+    </div>
+</div>
+<br/><br/>

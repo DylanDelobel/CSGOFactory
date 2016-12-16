@@ -7,9 +7,6 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use CS\ShopBundle\Entity\Weapon;
 use CS\ShopBundle\Entity\Image;
-use CS\ShopBundle\Entity\Crate;
-use CS\ShopBundle\Entity\Model;
-use CS\ShopBundle\Entity\Collection;
 
 class LoadWeapons implements FixtureInterface
 {
@@ -30,7 +27,8 @@ class LoadWeapons implements FixtureInterface
 			"Well-Worn",
 			"Battle-Scarred"
 			);
-		
+
+		// Random 500 Weapons
 		for ($i=0; $i < 500; $i++) { 
 			$weapon = new Weapon();
 			$weapon->setModel($listModels[mt_rand(0,$numberModels)]);

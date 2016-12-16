@@ -1,0 +1,28 @@
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+footer {
+    margin: 50px 0;
+}
+
+#titre {
+    text-align: center;
+    color: #2e6da4;
+}
+#title2 {
+    margin-left: 70px;
+}
+#map{
+    padding-top: 25px;
+    min-width: 240px;
+    width : 100%;
+    height : 350px;
+    border: 0;
+}
+
+@media screen and (max-width: 767px){
+    #map{
+        height : 100%;
+    }
+}

@@ -34,6 +34,9 @@ a:hover {
     color: #333333;
     text-decoration: none;
 }
+.pink{
+    background-color: pink;
+}
 /*=== 3. Text Outside the Box ===*/
 .etc-login-form {
     color: #919191;

@@ -32,28 +32,4 @@ footer {
     height: 55%;
     width: 80%;
 }
-/*End CSS Shop Page*/
 
-
-
-/* Page Contact*/
-#titre {
-    text-align: center;
-    color: #2e6da4;
-}
-#title2 {
-    margin-left: 70px;
-}
-#map{
-    padding-top: 25px;
-    min-width: 240px;
-    width : 100%;
-    height : 350px;
-    border: 0;
-}
-
-@media screen and (max-width: 767px){
-    #map{
-        height : 100%;
-    }
-}
