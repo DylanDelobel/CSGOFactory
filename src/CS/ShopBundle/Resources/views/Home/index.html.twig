@@ -25,15 +25,15 @@
                 {# Set the current iteration of the loop #}
                 {% set i = loop.index - 1 %}
                     {# Loop on all weapons #}
-                    {% for Weapons in listWeapons[i] %}
+                    {% for Weapon in listWeapons[i] %}
                     <div class="col-md-3 col-sm-6 hero-feature">
                         <div class="thumbnail">
                             <img class="imageShop" src="{{ asset('img/placeholder.png') }}" alt="">
                             <div class="caption">
-                                <h3><a href="#">{{ Weapons.name }}</a></h3>
-                                <p>Quality : {{ Weapons.quality }}</p>
+                                <h3><a href="#">{{ Weapon.name }}</a></h3>
+                                <p>Quality : {{ Weapon.quality }}</p>
                                 <p>
-                                    <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+                                    <a href="{{ path('cart_add',{'id' : Weapon.id }) }}" class="btn btn-primary">Buy Now!</a>
                                 </p>
                             </div>
                         </div>
