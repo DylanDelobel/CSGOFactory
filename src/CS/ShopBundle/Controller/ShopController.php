@@ -18,10 +18,13 @@ class ShopController extends Controller
      */
     public function indexAction()
     {
+        //Entity Manager
         $em = $this->getDoctrine()->getManager();
 
+        // Get Collection Repository
         $repositoryCollection = $this->getDoctrine()->getRepository('ShopBundle:Collection');
 
+        // Retrieve 3 collection based on date
         $listCollection = $repositoryCollection->findBy(
                 array(),
                 array( 'date' => 'desc'),
@@ -29,6 +32,7 @@ class ShopController extends Controller
                 1
             );
 
+        // Retrieve 4 weapons for each collection
         foreach ($listCollection as $uneCollection){
             $id = $repositoryCollection->findOneByName($uneCollection->getName())->getId();
             $listWeapons[] = $em->getRepository('ShopBundle:Weapon')->findByCollectionId($id);
