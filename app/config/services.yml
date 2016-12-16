@@ -2,6 +2,8 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
+#service Pour la verification de la connection a la phase de payment
     redirectionListener:
         class: CS\ShopBundle\Listener\RedirectionListener
         arguments: ["@service_container","@session"]
