@@ -1,9 +1,26 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
+{% block stylesheets %}
+    <link href="{{ asset('css/shop/checkEmail.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
-<p>
-{{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}
-</p>
-{% endblock %}
+    <div class="container" id="contenu">
+        <div class="row">
+            <div class="col-sm-offset-3 col-lg-offset-3 col-md-offset-3 col-sm-6 col-lg-6 col-md-6 alert alert-success">
+                <p id="text">Change password</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="well col-sm-offset-3 col-lg-offset-3 col-md-offset-3 col-sm-6 col-lg-6 col-md-6">
+                <h4>Check your email address :</h4>
+                <p>To resetting your password, please confirm the request to change password by clicking on the send link.</p>
+                <br/>
+                <p>To continue click <a href="{{ path('shop') }}">here</a>.</p>
+            </div>
+        </div>
+    </div>
+{% endblock fos_user_content %}

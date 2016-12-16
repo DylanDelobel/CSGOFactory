@@ -1,8 +1,49 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-{{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset' } }) }}
-    {{ form_widget(form) }}
-    <div>
-        <input type="submit" value="{{ 'resetting.reset.submit'|trans }}" />
+{% block stylesheets %}
+    <link href="{{ asset('css/shop/createAccount.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+<div class="container">
+    {{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset' } }) }}
+    <div class="row">
+        <div class="col-sm-offset-3 col-lg-offset-3 col-md-offset-3">
+            <h2 class="logo">Change password :</h2>
+        </div>
+    </div><br/>
+    <div class="well col-sm-offset-3 col-lg-offset-3 col-md-offset-3 col-sm-6 col-lg-6 col-md-6">
+        <div class="row">
+            <div class="form-group" id="email">
+                <div class="col-sm-offset-1 col-lg-offset-1 col-md-offset-1 col-sm-10 col-lg-10 col-md-10">
+                    {{ form_label(form.plainPassword.first, null, {
+                        'label': 'New password'
+                    }) }}
+                    {{ form_errors(form.plainPassword.first) }}
+                    {{ form_widget(form.plainPassword.first, {
+                        'attr' : {'placeholder' : 'New password'}
+                    }) }}
+                </div>
+            </div>
+        </div><br/>
+        <div class="row">
+            <div class="form-group" id="email">
+                <div class="col-sm-offset-1 col-lg-offset-1 col-md-offset-1 col-sm-10 col-lg-10 col-md-10">
+                    {{ form_label(form.plainPassword.second, null, {
+                        'label': 'Confirmation password'
+                    }) }}
+                    {{ form_errors(form.plainPassword.second) }}
+                    {{ form_widget(form.plainPassword.second, {
+                        'attr' : {'placeholder' : 'Confirmation password'}
+                    }) }}
+                </div>
+            </div>
+        </div><br/><br/>
+
+        <div class="col-sm-offset-8 col-lg-offset-8 col-md-offset-8 ">
+            <input type="submit" value="{{ 'Resetting password'|trans }}" class="btn btn-success" />
+        </div>
+        {{ form_end(form) }}
+        <br/>
     </div>
-{{ form_end(form) }}
+</div>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
