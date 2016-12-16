@@ -28,9 +28,9 @@
     </style>
    
 </head>
-<body style="margin:0px; padding:0px; -webkit-text-size-adjust:none;">
+<body style="margin:0px; padding:0px; -webkit-text-size-adjust:none; padding-top: 30px;">
 
-    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:rgb(42, 55, 78); min-height: 900px" >
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:rgb(42, 55, 78); " >
         <tbody>
             <tr>
                 <td align="center" bgcolor="#2A374E">
@@ -57,7 +57,7 @@
                                                 <td class="w30"  width="30"></td>
                                                 <td  class="w580"  width="580" valign="middle" align="left">
                                                     <div class="pagetoplogo-content">
-                                                        <img class="w580" style=" padding-left: 60px; text-decoration: none; display: block; color:#476688; font-size:30px;" src="http://image.noelshack.com/fichiers/2016/50/1481825883-csgofacoty.png" alt="CSGOFactory" width="482" height="108" />
+                                                        <img class="w580" style=" padding-left: 60px; text-decoration: none; display: block; color:#476688; font-size:30px;" src="http://image.noelshack.com/fichiers/2016/50/1481881108-csgofacotya.png" alt="CSGOFactory" width="482" height="108" />
                                                     </div>
                                                 </td> 
                                                 <td class="w30"  width="30"></td>
@@ -88,9 +88,25 @@
                                                                     <h2 style="color:#0E7693; font-size:22px; padding-top:12px;">
                                                                         Activate my account : </h2>
 
-                                                                    <div align="left" class="article-content" style="padding-bottom: 400px">
-                                                                        <p>
-                                                                            Thank you for signing up on CSGOFactory. To activate your e-mail address click <a style="color: #2BA6CB;" href="{{ confirmationUrl }}">her </a>.
+                                                                    <div align="left" class="article-content">
+                                                                        <h3 style="color: black">Hi {{ user.username }},</h3>
+                                                                        <p style="color: black">
+                                                                            Thank you for signing up on CSGOFactory. Please activate your account by clicking the button below.<br/>
+                                                                            {#<a style="color: #2BA6CB;" class="" href="{{ confirmationUrl }}">{{ confirmationUrl }}</a>.#}
+
+
+                                                                            <table border="0" cellpadding="10" cellspacing="0" width="180">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td align="center" style="background:#1892e6;border-radius:5px" valign="top">
+                                                                                            <a href="{{ confirmationUrl }}"
+                                                                                               style="color:#ffffff;display:block;font-size:13px;font-weight:bold;
+                                                                               text-align:center;text-decoration:none;text-transform:uppercase;
+                                                                               font-family:Arial,Helvetica,sans-serif" target="_blank">Activate Account</a> </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+
                                                                         </p>
                                                                     </div>
                                                                 </td>
@@ -100,11 +116,40 @@
                                                             </tr>
                                                         </tbody>
                                                     </table>
-                                                    <!-- fin zone -->                                                   
+                                                    <!-- fin zone -->
+
+                                                    <!-- une autre zone de contenu -->
+                                                    <table class="w580"  width="580" cellspacing="0" cellpadding="0" border="0">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td colspan="3">
+                                                                <h2 style="color:#0E7693; font-size:22px; ">
+                                                                </h2>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="w275"  width="275" valign="top">
+                                                                <div align="left" class="article-content">
+                                                                    <img class="w580" style="margin-left: 170px; text-decoration: none; display: block; color:#476688; font-size:30px;" src="http://csgofactory.weebly.com/uploads/6/5/3/8/65387873/1450565039.png" alt="CSGOFactory"/>
+                                                                </div>
+                                                            </td>
+                                                            <td class="w30"  width="30"></td>
+                                                            <td class="w275"  width="275" valign="top">
+                                                                <div align="left" class="article-content">
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="3" class="w580" height="1" bgcolor="#c7c5c5"></td>
+                                                        </tr>
+
+                                                        </tbody>
+                                                    </table>
+
 
 
                                                 </td>
-                                                <td class="w30" class="w30"  width="30"></td>
+                                                <td class="w30" width="30"></td>
                                             </tr>
                                         </tbody>
                                     </table>
