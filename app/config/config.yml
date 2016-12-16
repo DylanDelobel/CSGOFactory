@@ -82,15 +82,15 @@ doctrine:
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class: CS\ShopBundle\Entity\User
+    user_class: CS\ShopBundle\Entity\User                 #On définie la class où sont stocker les utilisateurs du siteset
     service:
-        mailer: fos_user.mailer.twig_swift
+        mailer: fos_user.mailer.twig_swift                #Pour envoyer le mail en utilise le service swiftmailer
     registration:
         confirmation:
-            enabled: true
+            enabled: true                                 #activé la confirmation par email
             from_email:
-                address:        contact.csgo@gmail.com
-                sender_name:    CSGOFactory
+                address:        contact.csgo@gmail.com    #Adresse de l'envoyeur
+                sender_name:    CSGOFactory               #Nom de l'envoyeur
             #template: templateEmail.html.twig
 
     resetting:
@@ -102,25 +102,14 @@ fos_user:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport:  "%mailer_transport%"
-    host:       "%mailer_host%"
+    transport:  "%mailer_transport%"    #On va chercher la config dans parameters.yml
+    host:       "%mailer_host%"         #pour que les données sensibles ne soit pas accessible par autrui
     username:   "%mailer_user%"
     password:   "%mailer_password%"
     spool:      { type: memory }
-    port:       ~
+    port:       ~         #Par défaut il utilise le port 465
     auth_mode:  login
     encryption: ssl
-
-
-#    transport: '%mailer_transport%'
-#    host:      '%mailer_host%'
-#    username:  '%mailer_user%'
-#    password:  '%mailer_password%'
-#    encryption: ssl
-#    #delivery_address: contact.csgo@gmail.com
-#    #port: 465
-#    auth_mode: login
-#    spool:      { type: memory }
 
 knp_snappy:
     temporary_folder: %kernel.cache_dir%/snappy
