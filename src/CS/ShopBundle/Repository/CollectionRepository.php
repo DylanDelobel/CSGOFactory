@@ -10,4 +10,5 @@ namespace CS\ShopBundle\Repository;
  */
 class CollectionRepository extends \Doctrine\ORM\EntityRepository
 {
+
 }

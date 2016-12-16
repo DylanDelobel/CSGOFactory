@@ -3,167 +3,46 @@
 {% block stylesheets %}
 	<link href="{{ asset('css/shop/homepage.css') }}" rel="stylesheet">
 {% endblock %}
-
 	{% block content %}
-
     <div class="container">
-
-        <!-- Jumbotron Header -->
-        <header class="jumbotron hero-spacer">
-            <h1>Crate of the day</h1>
-            <div class="col-md-3">
-                <img class="responsive" src="http://placehold.it/150x150" alt="">
-            </div>
-            <div class="col-md-9">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
-            <p>
-            </div>
-            <a class="btn btn-primary btn-large">Buy now!</a>
-        </header>
-
-        <hr>
-
-        {% if Collection is empty %}
+        {% if listCollection is empty %}
         <div class="row">
             <div class="col-lg-12">
                 <h3>Collection inexistante</h3>
             </div>
         </div>
         {% else %}
-        <div class="row">
-            <div class="col-lg-12">
-                <h3>{{ Collection.name }}</h3>
-            </div>
-        </div>
+            {# Loop on all collections #}
+            {% for Collection in listCollection %}
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3>{{ Collection.name }}</h3>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <!-- Page Features -->
+                <div class="row text-center">
+                {# Set the current iteration of the loop #}
+                {% set i = loop.index - 1 %}
+                    {# Loop on all weapons #}
+                    {% for Weapons in listWeapons[i] %}
+                    <div class="col-md-3 col-sm-6 hero-feature">
+                        <div class="thumbnail">
+                            <img class="imageShop" src="{{ asset('img/placeholder.png') }}" alt="">
+                            <div class="caption">
+                                <h3><a href="#">{{ Weapons.name }}</a></h3>
+                                <p>Quality : {{ Weapons.quality }}</p>
+                                <p>
+                                    <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <!-- /.row -->
+            {% endfor %}
         {% endif %}
-        <!-- /.row -->
-
-        <!-- Page Features -->
-        <div class="row text-center">
-
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
-                    <div class="caption">
-                        <h3>Weapon</h3>
-                        <p>Quality : Factory New</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
-                    <div class="caption">
-                        <h3>Weapon</h3>
-                        <p>Quality : Factory New</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
-                    <div class="caption">
-                        <h3>Weapon</h3>
-                        <p>Quality : Factory New</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
-                    <div class="caption">
-                        <h3>Weapon</h3>
-                        <p>Quality : Factory New</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <!-- /.row -->
-
-        <hr>
-
-        <!-- Title -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h3>Colletion number 2</h3>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <!-- Page Features -->
-        <div class="row text-center">
-
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
-                    <div class="caption">
-                        <h3>Weapon</h3>
-                        <p>Quality : Minimal Wear</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
-                    <div class="caption">
-                        <h3>Weapon</h3>
-                        <p>Quality : Minimal Wear</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
-                    <div class="caption">
-                        <h3>Weapon</h3>
-                        <p>Quality : Minimal Wear</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
-                    <div class="caption">
-                        <h3>Weapon</h3>
-                        <p>Quality : Minimal Wear</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <!-- /.row -->
-
         <hr>
     </div>
 {% endblock %}

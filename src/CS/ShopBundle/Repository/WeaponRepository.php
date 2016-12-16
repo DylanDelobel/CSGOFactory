@@ -13,6 +13,19 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class WeaponRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findByCollectionId($id){
+        $dql = $this->createQueryBuilder('w');
+
+        $dql
+            ->where('w.collection IN (:id)')
+            ->setParameter('id', $id)
+            ->setMaxResults(4)
+        ;
+
+
+        return $dql->getQuery()->getResult();
+    }
+
     public function findAllPagine($page, $max){
         if(!is_numeric($page)) {
             throw new \InvalidArgumentException(

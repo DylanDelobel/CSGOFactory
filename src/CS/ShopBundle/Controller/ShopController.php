@@ -18,11 +18,32 @@ class ShopController extends Controller
      */
     public function indexAction()
     {
-        $repository = $this->getDoctrine()->getRepository('ShopBundle:Collection');
+        //Entity Manager
+        $em = $this->getDoctrine()->getManager();
 
-        $collection = $repository->findOneById(66);
+        // Get Collection Repository
+        $repositoryCollection = $this->getDoctrine()->getRepository('ShopBundle:Collection');
 
-        return $this->render('ShopBundle:Home:index.html.twig', array('Collection' => $collection));
+        // Retrieve 3 collection based on date
+        $listCollection = $repositoryCollection->findBy(
+                array(),
+                array( 'date' => 'desc'),
+                3,
+                1
+            );
+
+        // Retrieve 4 weapons for each collection
+        foreach ($listCollection as $uneCollection){
+            $id = $repositoryCollection->findOneByName($uneCollection->getName())->getId();
+            $listWeapons[] = $em->getRepository('ShopBundle:Weapon')->findByCollectionId($id);
+        }
+
+        return $this->render(
+            'ShopBundle:Home:index.html.twig', 
+            array(
+                'listCollection' => $listCollection,
+                'listWeapons' => $listWeapons,
+            ));
     }
 
     /**

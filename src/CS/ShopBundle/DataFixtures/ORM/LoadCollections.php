@@ -16,7 +16,7 @@ class LoadCollections implements FixtureInterface
 			"Alpha Collection",
 			"Assault Collection",
 			"Aztec Collection",
-			"Baggage Collectio",
+			"Baggage Collection",
 			"Bank Collection",
 			"Cache Collection",
 			"Chop Shop Collection",
