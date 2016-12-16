@@ -13,16 +13,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class ContactController extends Controller
 {
-    
+
     /**
      * @Route("/contact/", name="contact")
      */
-    public function contactAction(Request $request)
+    public function contactAction(Request $request) //Reçevoir l'objet lors de la validation du formulaire
     {
         $cleanName = $cleanEmail = $cleanSubject = $cleanData = $result = null;
 
-        //$formContact =
-
+        //Création d'un formulaire sans entité
         $form = $this->createFormBuilder()
             ->add('name', TextType::class)
             ->add('email', EmailType::class)
@@ -31,38 +30,40 @@ class ContactController extends Controller
             ->add('submit', SubmitType::class, array('label' => 'Submit'))
             ->getForm();
 
+        //Traiter les données reçu
         $form->handleRequest($request);
 
+        //Si on appuie sur le btn envoyer et que le formulaire est valide
         if ($form->isSubmitted() && $form->isValid()) {
-            //if($request->isMethod('POST')){
+            //Mise en variable des données nécessaires
             $name = $form['name']->getData();
             $email = $form['email']->getData();
             $subject = $form['subject']->getData();
             $data = $form['message']->getData();
 
-            //Clear var
+            //Nettoyage des variables
             $cleanName = filter_var($name, FILTER_SANITIZE_STRING);
             $cleanEmail = filter_var($email, FILTER_SANITIZE_EMAIL);
             $cleanSubject = filter_var($subject, FILTER_SANITIZE_STRING);
             $cleanData = filter_var($data, FILTER_SANITIZE_STRING);
 
 
-            //Message object
+            //Création de l'objet du message
             $message = \Swift_Message::newInstance();
             $message->setSubject($cleanSubject);
             $message->setFrom(array(
                 $cleanEmail => $cleanName
             ));
-            //$message->setFrom('alexandre.gublin66@gmail.com');
-            //$message->setTo(array('contact.csgo@gmail.com' => 'totoroot'));
             $message->setTo('contact.csgo@gmail.com');
             $message->setBody($cleanData);
-            
+
+            //On passe notre mesage a mailer pour qu'il l'envoie
             $result = $this->get('mailer')->send($message);
 
-
+            //Création d'une session
             $session = new Session();
 
+            //Message d'erreur/succès
             if($result == 1){
                 $session->getFlashBag()->add('notificationEmail','Email sent.');
 
@@ -73,6 +74,7 @@ class ContactController extends Controller
 
         }
 
+        //Renvoyer sur la page contact avec le formulaire
         return $this->render('ShopBundle:Contact:index.html.twig', array('form' => $form->createView(),
             'result' => $result
         ));
