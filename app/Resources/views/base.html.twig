@@ -10,16 +10,17 @@
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
-{% block navbar %}{% endblock %}
 
-{% block content %}{% endblock %}
+    {% block navbar %}{% endblock %}
 
-{% block footer %}{% endblock %}
+    {% block content %}{% endblock %}
 
-{% block javascripts %}
-    <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-{% endblock %}
+    {% block footer %}{% endblock %}
+
+    {% block javascripts %}
+        <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    {% endblock %}
 
 </body>
 </html>
