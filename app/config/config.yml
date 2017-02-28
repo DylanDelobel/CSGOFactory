@@ -83,6 +83,9 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: CS\ShopBundle\Entity\User                 #On définie la class où sont stocker les utilisateurs du siteset
+    from_email:
+        address:        contact.csgo@gmail.com
+        sender_name:    CSGOFactory
     service:
         mailer: fos_user.mailer.twig_swift                #Pour envoyer le mail en utilise le service swiftmailer
     registration:
