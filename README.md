@@ -1,6 +1,8 @@
 CSGOFactory Application
 ========================
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0fdee7da60e84cfe9d89344ee38ff8d1)](https://www.codacy.com/app/dylan-delobel66/CSGOFactory?utm_source=github.com&utm_medium=referral&utm_content=DylanDelobel/CSGOFactory&utm_campaign=badger)
+
 The "CSGOFactory Application" created to learn the Symfony framework
 
 Requirements
