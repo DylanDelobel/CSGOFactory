@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Crate;
 use AppBundle\Entity\Image;
@@ -18,15 +18,11 @@ use Symfony\Component\HttpFoundation\Request;
 class AdminController extends Controller
 {
     /**
-     * @Route("/admin/panel" , name="admin.panel")
+     * @Route("/admin" , name="admin")
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $crateRepo = $em->getRepository('AppBundle:Crate');
-        $crateList = $crateRepo->findAll();
-
-        return $this->render('AppBundle:Admin:adminpanel.html.twig', ['crateList' => $crateList]);
+        return $this->render('AppBundle:Admin:adminpanel.html.twig');
     }
 
     /**
@@ -83,6 +79,4 @@ class AdminController extends Controller
             'crate' => $crate
         ]);
     }
-
-
 }

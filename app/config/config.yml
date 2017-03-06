@@ -88,7 +88,6 @@ swiftmailer:
 
 # knp_snappy Configuration
 knp_snappy:
-    temporary_folder: %kernel.cache_dir%/snappy
     pdf:
         enabled:    true
         # If you have wkhtmltopdf as an environment variable you don't need to provide the
