@@ -60,7 +60,7 @@ doctrine:
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class: CS\ShopBundle\Entity\User                 #On définie la class où sont stocker les utilisateurs du siteset
+    user_class: AppBundle\Entity\User                 #On définie la class où sont stocker les utilisateurs du siteset
     from_email:
         address:        contact.csgo@gmail.com    #Adresse de l'envoyeur
         sender_name:    CSGOFactory               #Nom de l'envoyeur

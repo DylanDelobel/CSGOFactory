@@ -1,5 +1,5 @@
-cs_shop:
-    resource: "@ShopBundle/Controller/"
+shop:
+    resource: "@AppBundle/Controller/"
     type:     annotation
     prefix:   /
 

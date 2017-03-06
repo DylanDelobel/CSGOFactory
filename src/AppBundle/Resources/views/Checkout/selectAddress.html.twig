@@ -1,0 +1,78 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/shop/checkout.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+	{% block content %}
+
+        <div class="container">
+
+            {% if infosUser is empty %}
+
+                <div class="col-sm-12 col-md-10 col-md-offset-1">
+                    <div class="text-center caption">
+                        <h2>No address in address list</h2>
+                        <p>Add new address</p>
+                        <a class="btn btn-default" href="{{ path('checkout_details') }}">
+                            <span class="glyphicon glyphicon-plus"></span> Add Address
+                        </a>
+                    </div>
+                </div>
+                <hr class="col-sm-12 col-md-10 col-md-offset-1">
+
+            {% else %}
+                <h2>Select Your Address</h2>
+                <div class="row">
+                    <h4>Delivery address</h4>
+
+                    <form action="{{ path('checkout_validation') }}" method="POST">
+                        <div class="funkyradio">
+                            {% for userInfo in infosUser %}
+                                <div class="funkyradio-success">
+                                    <div class="col-sm-10 col-xs-10">
+                                        <input type="radio" name="Delivery" id="radioDelivery{{ userInfo.id }}" value="{{ userInfo.id }}" />
+                                        <label for="radioDelivery{{ userInfo.id }}">{{ userInfo.firstName }} {{ userInfo.lastName }} {{ userInfo.streetAddress }} {{ userInfo.city }} {{ userInfo.cp }} {{ userInfo.country }}</label>
+                                    </div>
+
+                                    <div class="col-sm-2 col-xs-2">
+                                        <a class="btn btn-danger" href="{{ path('address_delete',{'id' : userInfo.id }) }}"><i class="glyphicon glyphicon-remove"></i></a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <h4>Billing address</h4>
+
+                            <div class="funkyradio">
+                                {% for userInfo in infosUser %}
+                                    <div class="funkyradio-success">
+                                        <div class="col-sm-10 col-xs-10">
+                                            <input type="radio" name="Billing" id="radioBilling{{ userInfo.id }}" value="{{ userInfo.id }}" />
+                                            <label for="radioBilling{{ userInfo.id }}">{{ userInfo.firstName }} {{ userInfo.lastName }} {{ userInfo.streetAddress }} {{ userInfo.city }} {{ userInfo.cp }} {{ userInfo.country }}</label>
+                                        </div>
+
+                                        <div class="col-sm-2 col-xs-2">
+                                            <a class="btn btn-danger" href="{{ path('address_delete',{'id' : userInfo.id }) }}"><i class="glyphicon glyphicon-remove"></i></a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+                        <div class="row text-center">
+
+                            <input type="submit" class="btn btn-success" value="Choose this address">
+                            <a class="btn btn-info" href="{{ path('checkout_details') }}">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </a>
+
+                        </div>
+                    </form>
+                </div>
+
+
+
+
+            {% endif %}
+        </div>
+    {% endblock %}

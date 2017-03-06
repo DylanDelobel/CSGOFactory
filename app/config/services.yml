@@ -5,7 +5,7 @@ services:
 
 #service Pour la verification de la connection a la phase de payment
     redirectionListener:
-        class: CS\ShopBundle\Listener\RedirectionListener
+        class: AppBundle\Listener\RedirectionListener
         arguments: ["@service_container","@session"]
         tags:
           - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
@@ -14,10 +14,10 @@ services:
         class: Doctrine\ORM\EntityRepository
         factory: ['@doctrine.orm.default_entity_manager', getRepository]
         arguments:
-            - CS\ShopBundle\Entity\Model
+            - AppBundle\Entity\Model
 
     shop.menu_builder:
-        class: CS\ShopBundle\Menu\MenuBuilder
+        class: AppBundle\Menu\MenuBuilder
         arguments: ["@knp_menu.factory","@shop_model.model_repository"]
         tags:
             - { name: knp_menu.menu_builder, method: createMainMenu, alias: main } # The alias is what is used to retrieve the menu
