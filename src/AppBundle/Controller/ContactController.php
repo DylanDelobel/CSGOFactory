@@ -49,7 +49,7 @@ class ContactController extends Controller
 
 
             //Création de l'objet du message
-            $message = \Swift_Message::newInstance();
+            $message = new \Swift_Message();
             $message->setSubject($cleanSubject);
             $message->setFrom(array(
                 $cleanEmail => $cleanName
@@ -75,7 +75,7 @@ class ContactController extends Controller
         }
 
         //Renvoyer sur la page contact avec le formulaire
-        return $this->render('ShopBundle:Contact:index.html.twig', array('form' => $form->createView(),
+        return $this->render('AppBundle:Contact:index.html.twig', array('form' => $form->createView(),
             'result' => $result
         ));
     }
