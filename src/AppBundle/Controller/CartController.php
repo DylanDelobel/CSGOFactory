@@ -26,10 +26,10 @@ class CartController extends Controller
         //Entity Manager
         $em = $this->getDoctrine()->getManager();
         //Recupere une liste des weapons grace au id des weapons dans session['cart'] pour pouvoir afficher les info de l'objet dans la vue
-        $listWeapons = $em->getRepository('ShopBundle:Weapon')->findArray(array_keys($session->get('cart')));
+        $listWeapons = $em->getRepository('AppBundle:Weapon')->findArray(array_keys($session->get('cart')));
 
         //Retourne sur la vue du panier avec un array contenant deux variable $listWeapons et Le panier 'cart'
-        return $this->render('ShopBundle:Cart:index.html.twig', array('listWeapons' => $listWeapons, 'cart' => $session->get('cart')));
+        return $this->render('AppBundle:Cart:index.html.twig', array('listWeapons' => $listWeapons, 'cart' => $session->get('cart')));
     }
     /**
      * @Route("/add/{id}", name="cart_add")

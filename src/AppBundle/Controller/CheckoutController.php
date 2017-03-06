@@ -29,10 +29,10 @@ class CheckoutController extends Controller
         $userId =$this->container->get('security.token_storage')->getToken()->getUser()->getId();
 
         //On recupere tout les info des addresse de l'utilisateur pour pouvoir les afficher dans la vue
-        $infosUser = $em->getRepository('ShopBundle:UsersAdressesInfo')->findBy(array('user' => $userId));
+        $infosUser = $em->getRepository('AppBundle:UsersAdressesInfo')->findBy(array('user' => $userId));
 
         //On retourne la page du choix des addresse est on envoie les infosUser a la vue
-        return $this->render('ShopBundle:Checkout:selectAddress.html.twig', array('infosUser'=> $infosUser));
+        return $this->render('AppBundle:Checkout:selectAddress.html.twig', array('infosUser'=> $infosUser));
     }
 
     /**
@@ -121,7 +121,7 @@ class CheckoutController extends Controller
         }
 
         //On retourne sur la vue pour ajouter une nouvelle addresse avec les formulaire
-        return $this->render('ShopBundle:Checkout:index.html.twig', array('form' => $form->createView()));
+        return $this->render('AppBundle:Checkout:index.html.twig', array('form' => $form->createView()));
 
     }
 
@@ -139,13 +139,13 @@ class CheckoutController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         //On utilise la function preparesOrder on recuper la valeur dans pOrder (On recuper l'id de la commande)
-        $pOrder = $this->forward('ShopBundle:Checkout:preparesOrder');
+        $pOrder = $this->forward('AppBundle:Checkout:preparesOrder');
         //On va chercher les information de la commande grace a sont id
-        $order = $em->getRepository('ShopBundle:OrderC')->find($pOrder->getContent());
+        $order = $em->getRepository('AppBundle:OrderC')->find($pOrder->getContent());
 
 
         //On retourne sur la page de validation en donnent les infromation sur la commande
-        return $this->render('ShopBundle:Checkout:validation.html.twig', array('listOrder' => $order ));
+        return $this->render('AppBundle:Checkout:validation.html.twig', array('listOrder' => $order ));
     }
 
     /**
@@ -157,7 +157,7 @@ class CheckoutController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         // on recupere l'addresse a supprimer
-        $infoUserDelete = $em->getRepository('ShopBundle:UsersAdressesInfo')->find($id);
+        $infoUserDelete = $em->getRepository('AppBundle:UsersAdressesInfo')->find($id);
 
         //Verfi si l'utilisateur qui supprimer est bien celui connecter
         if ($this->container->get('security.token_storage')->getToken()->getUser() != $infoUserDelete->getUser() || !$infoUserDelete){
@@ -182,10 +182,10 @@ class CheckoutController extends Controller
         //Entity Manager
         $em = $this->getDoctrine()->getManager();
         //Recuperation de la commande dans la base de donner grace a l'id
-        $order = $em->getRepository('ShopBundle:OrderC')->find($id);
+        $order = $em->getRepository('AppBundle:OrderC')->find($id);
 
         //verification si la commande existe et si elle a deja été traiter
-        if (!$order || $order->getValidate() == 1){
+        if (!$order || $order->isValidate() == 1){
             //Si oui erreur
             throw $this->createNotFoundException("The order don't exist");
         }
@@ -207,7 +207,7 @@ class CheckoutController extends Controller
 
 
         //On retourne sur la page Billing et on envoie l'id
-        return $this->render('ShopBundle:Checkout:billing.html.twig',array('orderId' => $id));
+        return $this->render('AppBundle:Checkout:billing.html.twig',array('orderId' => $id));
     }
 
     /**
@@ -220,12 +220,12 @@ class CheckoutController extends Controller
 
         //On recuper les differente donner pour la vue a transformer
         //recupere la commande
-        $order = $em->getRepository('ShopBundle:OrderC')->find($id);
+        $order = $em->getRepository('AppBundle:OrderC')->find($id);
 
         //Appele du bundle KNP_SNAPPY
         $snappy = $this->get('knp_snappy.pdf');
         //recuperation de la vue avec envoie des donner a traiter
-        $html = $this->renderView('ShopBundle:Checkout:orderPdf.html.twig', array('order' => $order));
+        $html = $this->renderView('AppBundle:Checkout:orderPdf.html.twig', array('order' => $order));
 
         //Nom du fichier a télécharger
         $fileName = 'BillingCSGOFactory';
@@ -288,11 +288,11 @@ class CheckoutController extends Controller
         $totalTTC = 0;
 
         //l'on va chercher l'adresse de delivery dans la base de donner grace a l'id
-        $delivery = $em->getRepository('ShopBundle:UsersAdressesInfo')->find($adresse['Delivery']);
+        $delivery = $em->getRepository('AppBundle:UsersAdressesInfo')->find($adresse['Delivery']);
         //l'on va chercher l'adresse de billing dans la base de donner grace a l'id
-        $billing = $em->getRepository('ShopBundle:UsersAdressesInfo')->find($adresse['Billing']);
+        $billing = $em->getRepository('AppBundle:UsersAdressesInfo')->find($adresse['Billing']);
         //l'on va chercher dan la base de donner la liste des weapons (information) grace au donner dans la session 'cart'
-        $listWeapons = $em->getRepository('ShopBundle:Weapon')->findArray(array_keys($session->get('cart')));
+        $listWeapons = $em->getRepository('AppBundle:Weapon')->findArray(array_keys($session->get('cart')));
 
         
         foreach($listWeapons as $weapons)
@@ -356,7 +356,7 @@ class CheckoutController extends Controller
             $order = new OrderC();
         }else{
             //recupere la commande dans la base de doner et la mettre dans $order
-            $order = $em->getRepository('ShopBundle:OrderC')->find($session->get('order'));
+            $order = $em->getRepository('AppBundle:OrderC')->find($session->get('order'));
         }
         //set tout les information
         //Date

@@ -85,7 +85,7 @@ class OrderC
      *
      * @return bool
      */
-    public function getValidate()
+    public function isValidate()
     {
         return $this->validate;
     }
