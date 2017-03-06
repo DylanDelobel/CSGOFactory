@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fa1a373f62635d29e0e9ea5f0fb1ad15",
-    "content-hash": "186a0ae64342b5839c8628428990684d",
+    "hash": "e4f73f98d9fcabf3198fbb6b329cb1ac",
+    "content-hash": "97592d7cf1361e1fb83eb26263017533",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -2354,17 +2354,17 @@
         },
         {
             "name": "tiloweb/pagination-bundle",
-            "version": "dev-master",
+            "version": "1.1.3",
             "target-dir": "Tiloweb/PaginationBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Tiloweb/SymfonyPaginationBundle.git",
-                "reference": "4f59125fbd763ca3f3bbc95f87eae79bd840c37f"
+                "reference": "e153b57758a727765b56969f74d616d3538d904a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Tiloweb/SymfonyPaginationBundle/zipball/4f59125fbd763ca3f3bbc95f87eae79bd840c37f",
-                "reference": "4f59125fbd763ca3f3bbc95f87eae79bd840c37f",
+                "url": "https://api.github.com/repos/Tiloweb/SymfonyPaginationBundle/zipball/e153b57758a727765b56969f74d616d3538d904a",
+                "reference": "e153b57758a727765b56969f74d616d3538d904a",
                 "shasum": ""
             },
             "require": {
@@ -2394,7 +2394,7 @@
                 "paginator",
                 "tiloweb"
             ],
-            "time": "2016-12-08 10:05:57"
+            "time": "2016-08-01 17:24:41"
         },
         {
             "name": "twig/twig",
@@ -2576,7 +2576,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "tiloweb/pagination-bundle": 20,
         "friendsofsymfony/user-bundle": 20
     },
     "prefer-stable": false,

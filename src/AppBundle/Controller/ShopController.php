@@ -87,7 +87,7 @@ class ShopController extends Controller
         // À partir du formBuilder, on génère le formulaire
         $form = $formBuilder->getForm();
 
-        $search = $wear = $priceMin = $priceMax =null;
+        $search = $wear = $priceMin = $priceMax = null;
         // Si la requête est en POST
         if($request->isMethod('POST')){
             $form->handleRequest($request);

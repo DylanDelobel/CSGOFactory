@@ -385,12 +385,4 @@ class CheckoutController extends Controller
         return new Response($order->getId());
 
     }
-
-
-
-
-
-
-
-
 }

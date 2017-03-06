@@ -4,7 +4,7 @@ namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Crate;
 use AppBundle\Entity\Image;
-use AppBundle\Form\CrateType;
+use AppBundle\Form\Type\CrateType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
