@@ -270,7 +270,7 @@ class CheckoutController extends Controller
         return $this->redirect($this->generateUrl('checkout_validation'));
     }
 
-    public function bill(){
+    public function billAction(){
         //Entity Manager
         $em = $this->getDoctrine()->getManager();
 
@@ -367,8 +367,8 @@ class CheckoutController extends Controller
         $order->setValidate(0);
         //Pour la reference (pas de reference pour le moment a a ajouter dans une future maj)
         $order->setRef(0);
-        // On cette la commande pour la mettre en base de donner avec tout les information (bill() crée un tableau avec tout les information)
-        $order->setListOrder($this->bill());
+        // On cette la commande pour la mettre en base de donner avec tout les information (billAction() crée un tableau avec tout les information)
+        $order->setListOrder($this->billAction());
 
         //verification si order existe dans la variable session
         if (!$session->has('order')) {
