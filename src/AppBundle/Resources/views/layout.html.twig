@@ -21,6 +21,7 @@
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="{{ url('cart') }}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> My Space</a></li>
                     <li><a href="{{ url('fos_user_security_logout') }}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Logout</a></li>
                 </ul>
                 {% else %}

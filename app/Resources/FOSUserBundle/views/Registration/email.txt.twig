@@ -1,6 +1,21 @@
 {% trans_default_domain 'FOSUserBundle' %}
 {% block subject %}Activate your account{% endblock subject %}
 
+
+{% block body_text %}
+{% autoescape false %}
+Activate my account :
+
+Hi {{ user.username }},
+
+    Thank you for signing up on CSGOFactory. Please activate your account by clicking to the link below.
+    {{ confirmationUrl }}
+
+  CSGPOFactory
+
+{% endautoescape %}
+{% endblock %}
+
 {% block body_html %}
     {% include('templateEmail2.html.twig') %}
 {% endblock body_html %}

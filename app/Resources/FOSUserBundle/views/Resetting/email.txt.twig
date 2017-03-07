@@ -1,6 +1,22 @@
 {% trans_default_domain 'FOSUserBundle' %}
 {% block subject %}Resetting your password{% endblock subject %}
 
+
+
+{% block body_text %}
+{% autoescape false %}
+Resettting password :
+
+Hi {{ user.username }},
+    A password reset request has been sent. Please change your password by clicking to the link below.
+    {{ confirmationUrl }}
+
+CSGPOFactory
+
+{% endautoescape %}
+{% endblock %}
+
+
 {% block body_html %}
     {% include('templateResettingPassword.html.twig') %}
 {% endblock body_html %}
