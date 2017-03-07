@@ -3,14 +3,11 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
 
-# Put parameters here that don't need to change on each machine where the app is deployed
-# http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
 
+# Framework Configuration
 framework:
-    #esi:             ~
-    #translator:      { fallbacks: ["%locale%"] }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -18,14 +15,12 @@ framework:
     form:            ~
     csrf_protection: ~
     validation:      { enable_annotations: true }
-    #serializer:      { enable_annotations: true }
     templating:
         engines: ['twig']
     default_locale:  "%locale%"
     trusted_hosts:   ~
     trusted_proxies: ~
     session:
-        # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
         handler_id:  session.handler.native_file
         save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
     fragments:       ~
@@ -61,52 +56,29 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
 
-#fos_user:
-#    db_driver: orm
-#    firewall_name: main
-#    user_class: CMS\UserBundle\Entity\User
-#    service:
-#        user_manager: cms_user.my_user_manager
-#        mailer: fos_user.mailer.twig_swift
-#    registration:
-#        form:
-#            type: cms_frontbundle_inscriptiontype
-#        confirmation:
-#            enabled:    true
-#            template: CMSUserundle:Default:registration.email.twig
-#            from_email:
-#                address:        gilbert.armengaud@gmail.com
-#                sender_name:    StartCMS Gilbert ARMENGAUD
-
-
+# fos_user Configuration
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class: CS\ShopBundle\Entity\User                 #On définie la class où sont stocker les utilisateurs du siteset
+    user_class: AppBundle\Entity\User                 #On définie la class où sont stocker les utilisateurs du siteset
     from_email:
-        address:        contact.csgo@gmail.com
-        sender_name:    CSGOFactory
+        address:        contact.csgo@gmail.com    #Adresse de l'envoyeur
+        sender_name:    CSGOFactory               #Nom de l'envoyeur
     service:
         mailer: fos_user.mailer.twig_swift                #Pour envoyer le mail en utilise le service swiftmailer
     registration:
         confirmation:
             enabled: true                                 #activé la confirmation par email
-            from_email:
-                address:        contact.csgo@gmail.com    #Adresse de l'envoyeur
-                sender_name:    CSGOFactory               #Nom de l'envoyeur
-            #template: templateEmail.html.twig
-
     resetting:
         email:
             from_email:
                 address:        contact.csgo@gmail.com
                 sender_name:    CSGOFactory
 
-
 # Swiftmailer Configuration
 swiftmailer:
-    transport:  "%mailer_transport%"    #On va chercher la config dans parameters.yml
-    host:       "%mailer_host%"         #pour que les données sensibles ne soit pas accessible par autrui
+    transport:  "%mailer_transport%"    # On va chercher la config dans parameters.yml
+    host:       "%mailer_host%"         # pour que les données sensibles ne soit pas accessible par autrui
     username:   "%mailer_user%"
     password:   "%mailer_password%"
     spool:      { type: memory }
@@ -114,8 +86,8 @@ swiftmailer:
     auth_mode:  login
     encryption: ssl
 
+# knp_snappy Configuration
 knp_snappy:
-    temporary_folder: %kernel.cache_dir%/snappy
     pdf:
         enabled:    true
         # If you have wkhtmltopdf as an environment variable you don't need to provide the

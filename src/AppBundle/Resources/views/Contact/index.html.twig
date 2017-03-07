@@ -1,0 +1,122 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/shop/contact.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="container" id="container">
+
+
+        <!-- First title-->
+        <div class="row">
+            <h2 id="titre">Contact us</h2><hr class="hrTitre">
+        </div><br><br>
+
+        {# En récupère dans la session le FlashBag pour notifier le résultat de l'action client #}
+        {% for flashMessage in app.session.flashbag.get('notificationEmail') %}
+            <div class="alert {% if result == 1 %} alert-success {% elseif result == 0 %} alert-danger {% endif %}">
+                <p>{{ flashMessage }}</p>
+            </div>
+        {% endfor %}
+
+        <div class="well col-xs-offset-1 col-sm-offset-0 col-lg-offset-0 col-md-offset-0 col-xs-10 col-sm-10 col-lg-12 col-md-12">
+            <div class="row">
+                <div class="col-sm-6 col-lg-6 col-md-6">
+                    {# Début du formulaire #}
+                    {{ form_start(form, {'method': 'POST'}) }}
+                        {# Afficher les erreurs du formulaire #}
+                        {{ form_errors(form) }}
+
+                    <!-- Title in the Well-->
+                    <div class="row">
+                        <div class="col-sm-offset-1 col-lg-offset-1 col-md-offset-1">
+                            <h3 id="title2">Let's keep in touch</h3>
+                        </div>
+                    </div><br>
+                    <!-- First input : Name -->
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-sm-offset-0 col-lg-offset-2 col-md-offset-2 col-sm-1 col-lg-1 col-md-1">
+                                {{ form_label(form.name, null, {
+                                    'label': 'Name'
+                                }) }}
+                            </div>
+                            <div class="col-sm-offset-2 col-lg-offset-1 col-md-offset-1 col-xs-11 col-sm-8 col-lg-7 col-md-7">
+                                {#Récupération de l'input name sans le label qui va avec#}
+                                {{ form_widget(form.name) }}
+                                {#Erreur de l'input name #}
+                                {{ form_errors(form.name) }}
+                            </div>
+                        </div>
+                    </div><br>
+
+                    <!-- Input two : Email-->
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-sm-offset-0 col-lg-offset-2 col-md-offset-2 col-sm-1 col-lg-1 col-md-1">
+                                {{ form_label(form.email, null, {
+                                    'label': 'Email'
+                                }) }}
+                            </div>
+                            <div class="col-sm-offset-2 col-lg-offset-1 col-md-offset-1 col-xs-11 col-sm-8 col-lg-7 col-md-7">
+                                {{ form_widget(form.email) }}
+                                {{ form_errors(form.email) }}
+                            </div>
+                        </div>
+                    </div><br>
+
+                    <!-- Input three : Subject -->
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-sm-offset-0 col-lg-offset-2 col-md-offset-2 col-sm-1 col-lg-1 col-md-1">
+                                {{ form_label(form.email, null, {
+                                    'label': 'Subject'
+                                }) }}
+                            </div>
+                            <div class="col-sm-offset-2 col-lg-offset-1 col-md-offset-1 col-xs-11 col-sm-8 col-lg-7 col-md-7">
+                                {{ form_widget(form.subject) }}
+                                {{ form_errors(form.subject) }}
+                            </div>
+                        </div>
+                    </div><br>
+
+                    <!-- Last input-->
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-sm-offset-0 col-lg-offset-2 col-md-offset-2 col-sm-1 col-lg-1 col-md-1">
+                                {{ form_label(form.email, null, {
+                                    'label': 'Message'
+                                }) }}
+                            </div>
+                            <div class="col-sm-offset-2 col-lg-offset-1 col-md-offset-1 col-xs-11 col-sm-8 col-lg-7 col-md-7">
+                                {{ form_widget(form.message) }}
+                                {{ form_errors(form.message) }}
+                            </div>
+                        </div>
+                    </div><br>
+
+                    <!-- submit -->
+                    <div class="row" id="rowInput">
+                        <div class="col-xs-offset-8 col-sm-offset-8 col-lg-offset-10 col-md-offset-10">
+                            {{ form_row(form.submit) }}
+
+                        </div>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+
+
+
+                <!-- Google Maps-->
+                <div class="col-xs-offset-0 col-sm-offset-0 col-lg-offset-1 col-md-offset-1 col-xs-2 col-sm-5 col-lg-5 col-md-5">
+                    <iframe id="map" frameborder="0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJX53zlbdvsBIRNs8VjbxuFhY&key=AIzaSyBtdG9jXCIhNAFkzLU35DVHwIrEzQJAWQ0" allowfullscreen></iframe>
+                </div> <!-- End  col googleMaps-->
+
+            </div> <!-- End col-->
+        </div> <!-- End row content -->
+    </div> <!-- End container -->
+
+{% endblock %}

@@ -5,6 +5,8 @@ CSGOFactory Application
 
 The "CSGOFactory Application" created to learn the Symfony framework
 
+Symfony 3 Standart Edition based eCommerce project.
+
 Requirements
 ------------
 
@@ -28,6 +30,11 @@ Then run the following commands:
 You can load some data if you want:
 	
 	php bin/console doctrine:fixture:load
+	
+Two account are initialized with the fixture
+
+  * user/user
+  * admin/admin
     
     
 [1]:  http://getcomposer.org/

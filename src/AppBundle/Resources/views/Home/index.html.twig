@@ -1,0 +1,48 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+	<link href="{{ asset('css/shop/homepage.css') }}" rel="stylesheet">
+{% endblock %}
+	{% block content %}
+    <div class="container">
+        {% if listCollection is empty %}
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Collection inexistante</h3>
+            </div>
+        </div>
+        {% else %}
+            {# Loop on all collections #}
+            {% for Collection in listCollection %}
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3>{{ Collection.name }}</h3>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <!-- Page Features -->
+                <div class="row text-center">
+                {# Set the current iteration of the loop #}
+                {% set i = loop.index - 1 %}
+                    {# Loop on all weapons #}
+                    {% for Weapon in listWeapons[i] %}
+                    <div class="col-md-3 col-sm-6 hero-feature">
+                        <div class="thumbnail">
+                            <img class="imageShop" src="{{ asset('img/placeholder.png') }}" alt="">
+                            <div class="caption">
+                                <h3><a href="#">{{ Weapon.name }}</a></h3>
+                                <p>Quality : {{ Weapon.quality }}</p>
+                                <p>
+                                    <a href="{{ path('cart_add',{'id' : Weapon.id }) }}" class="btn btn-primary">Buy Now!</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <!-- /.row -->
+            {% endfor %}
+        {% endif %}
+        <hr>
+    </div>
+{% endblock %}

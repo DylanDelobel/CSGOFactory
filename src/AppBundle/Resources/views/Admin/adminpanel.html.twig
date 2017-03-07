@@ -1,0 +1,21 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/shop/homepage.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                    <h2>Admin Panel</h2>
+                <ul>
+                    <li><a href="{{ path( 'admin.crate' ) }}">List of crates</a></li>
+                    <li><a href="#">List of Collections</a></li>
+                    <li><a href="#">List of Families</a></li>
+                    <li><a href="#">List of Models</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
