@@ -26,6 +26,8 @@ framework:
     fragments:       ~
     http_method_override: true
     assets: ~
+    serializer:
+        enabled: true
 
 # Twig Configuration
 twig:
