@@ -33,3 +33,18 @@ footer {
     width: 80%;
 }
 
+#h2AdminPanel{
+    padding-bottom: 40px;
+}
+
+#listOptionPanelAdmin{
+    text-align: center;
+}
+
+.footerSpace{
+    margin-bottom: 300px;
+}
+
+#titreUpdateProfile{
+    margin-bottom: 60px;
+}
