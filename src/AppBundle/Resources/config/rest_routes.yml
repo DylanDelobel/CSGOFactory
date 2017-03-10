@@ -5,3 +5,7 @@ famillies:
 models:
     type:     rest
     resource: "@AppBundle/Controller/Rest/ModelsController.php"
+
+weapons:
+    type:     rest
+    resource: "@AppBundle/Controller/Rest/WeaponsController.php"
