@@ -6,6 +6,15 @@ models:
     type:     rest
     resource: "@AppBundle/Controller/Rest/ModelsController.php"
 
+crates:
+    type:     rest
+    resource: "@AppBundle/Controller/Rest/CratesController.php"
+
+collections:
+    type:     rest
+    resource: "@AppBundle/Controller/Rest/CollectionsController.php"
+
+
 weapons:
     type:     rest
     resource: "@AppBundle/Controller/Rest/WeaponsController.php"
