@@ -1,0 +1,7 @@
+famillies:
+    type:     rest
+    resource: "@AppBundle/Controller/Rest/FamilliesController.php"
+
+models:
+    type:     rest
+    resource: "@AppBundle/Controller/Rest/ModelsController.php"

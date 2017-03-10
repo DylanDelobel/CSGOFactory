@@ -5,3 +5,8 @@ shop:
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+rest_api:
+    type:     rest
+    prefix:   api/
+    resource: "@AppBundle/Resources/config/rest_routes.yml"
