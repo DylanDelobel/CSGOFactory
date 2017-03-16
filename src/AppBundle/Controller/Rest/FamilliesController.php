@@ -16,8 +16,9 @@ class FamilliesController extends Controller
         $em = $this->getDoctrine()->getManager();
         $famillies = $em->getRepository('AppBundle:Family')->findAll();
         if (empty($famillies)){
-            return "No items";
+            return array("code" => "404", "message" => "Not Found");
         }
+
         return $famillies;
     }
 
@@ -25,7 +26,7 @@ class FamilliesController extends Controller
         $em = $this->getDoctrine()->getManager();
         $family = $em->getRepository('AppBundle:Family')->find($id);
         if (empty($family)){
-            return "No items";
+            return array("code" => "404", "message" => "Not Found");
         }
         return $family;
     }
@@ -44,27 +45,18 @@ class FamilliesController extends Controller
             $em->flush();
             return $family;
         }else{
-            return $form;
+            return array("code" => "400", "message" => "Form is Invalid");
         }
 
     }
 
-    public function deleteFamillieAction($id, Request $request){
-        $em = $this->getDoctrine()->getManager();
-        $family = $em->getRepository('AppBundle:Family')->find($id);
-
-
-        $em->remove($family);
-        $em->flush();
-    }
-
-    public function updateFamillieAction($id, Request $request){
+    public function putFamillieAction($id, Request $request){
 
         $em = $this->getDoctrine()->getManager();
         $family = $em->getRepository('AppBundle:Family')->find($id);
 
         if (empty($family)) {
-            return new JsonResponse(['message' => 'Family not update'], Response::HTTP_NOT_MODIFIED);
+            return array("code" => "404", "message" => "Not Found");
         }
 
         $form = $this->createForm(FamilyType::class, $family);
@@ -73,12 +65,23 @@ class FamilliesController extends Controller
         if ($form->isValid()){
             $em->merge($family);
             $em->flush();
-        }else{
-            return $form;
+            return array("code" => "200", "message" => "Ok");
         }
+        return array("code" => "400", "message" => "Form is Invalid");
     }
 
+    public function deleteFamillieAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $family = $em->getRepository('AppBundle:Family')->find($id);
 
+        if (empty($family)) {
+            return array("code" => "404", "message" => "Not Found");
+        }
+
+        $em->remove($family);
+        $em->flush();
+        return array("code" => "200", "message" => "Ok");
+    }
 
 }
 
