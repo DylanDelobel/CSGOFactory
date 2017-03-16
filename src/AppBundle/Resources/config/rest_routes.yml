@@ -18,3 +18,7 @@ collections:
 weapons:
     type:     rest
     resource: "@AppBundle/Controller/Rest/WeaponsController.php"
+
+users:
+    type:     rest
+    resource: "@AppBundle/Controller/Rest/UsersController.php"
