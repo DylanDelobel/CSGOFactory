@@ -56,6 +56,15 @@ class ShopController extends Controller
 
         $queryBuilder = $em->getRepository('AppBundle:Weapon')->createQueryBuilder('weapons');
 
+        if (($request->query->getAlnum('filter'))) {
+            $queryBuilder->where('weapons.name LIKE :name')
+                ->setParameter('name', '%' . $request->query->getAlnum('filter') . '%');
+        }
+        if (($request->query->getAlnum('price'))) {
+            $queryBuilder->where('weapons.price LIKE :price')
+                ->setParameter('price', '%' . $request->query->getAlnum('price') . '%');
+        }
+
         $query = $queryBuilder;
 
         /**
