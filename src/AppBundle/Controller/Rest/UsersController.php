@@ -74,5 +74,15 @@ class UsersController extends Controller
 
     }
 
+    /* Login user */
+    public  function checkUserAction(Request $request)
+    {
+        //return $this->redirectToRoute('fos_user_security_check');
+        return $this->redirectToRoute('fos_user_security_login');
+    }
+
+
+
+
 }
 
