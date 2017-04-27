@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\AppBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -53,66 +54,23 @@ class ShopController extends Controller
         //Entity Manager
         $em = $this->getDoctrine()->getManager();
 
-        // On crée le FormBuilder
-        $formBuilder = $this->createFormBuilder();
+        $queryBuilder = $em->getRepository('AppBundle:Weapon')->createQueryBuilder('weapons');
 
-        // On ajoute les champs de l'entité que l'on veut à notre formulaire
-        $formBuilder
-            ->add('search', SearchType::class, array(
-                'required'    => false,
-                'empty_data'  => null
-            ))
-            ->add('wear', ChoiceType::class, array(
-                'choices' => array(
-                    'Factory-New' => 'Factory New',
-                    'Minimal-Wear'=> 'Minimal Wear',
-                    'Field-Tested'=> 'Field-Tested',
-                    'Well-Worn'=> 'Well-Worn',
-                    'Battle-Scarred'=> 'Battle-Scarred'
-                ),
-                'required'    => false,
-                'empty_data'  => null
-            ))
-            ->add('priceMin', IntegerType::class, array(
-                'required'    => false,
-                'empty_data'  => ""
-            ))
+        $query = $queryBuilder;
 
-            ->add('priceMax', IntegerType::class, array(
-                'required'    => false,
-                'empty_data'  => ""
-            ))
-            ->add('searchBtn', SubmitType::class, array('label' => 'Search'));
+        /**
+         * @var $paginator \Knp\Component\Pager\Paginator
+         */
+        $paginator = $this->get('knp_paginator');
+        $result = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('LIMIT', 10)
+        );
 
-        // À partir du formBuilder, on génère le formulaire
-        $form = $formBuilder->getForm();
-
-        $search = $wear = $priceMin = $priceMax = null;
-        // Si la requête est en POST
-        if($request->isMethod('POST')){
-            $form->handleRequest($request);
-
-            $search = $form['search']->getData();
-            $wear = $form['wear']->getData();
-            $priceMin = $form['priceMin']->getData();
-            $priceMax = $form['priceMax']->getData();
-        }
-
-        if(($search != null) | ($wear != null) | ($priceMin != null) | ($priceMax != null)){
-            $listWeapons = $em->getRepository('AppBundle:Weapon')->findSearchPagine($priceMin, $priceMax, $request->query->getInt('page', 1), 12);
-        }else{
-            $listWeapons = $em->getRepository('AppBundle:Weapon')->findAllPagine($request->query->getInt('page', 1), 12);
-        }
-
-        return $this->render('AppBundle:Shop:index.html.twig',
-            array(
-                'listWeapons' => $listWeapons,
-                'form' => $form->createView(),
-                'search' => $search,
-                'wear' => $wear,
-                'priceMin' => $priceMin,
-                'priceMax' => $priceMax
-            ));
+        return $this->render('AppBundle:Shop:index.html.twig', [
+            'listWeapons' => $result,
+        ]);
     }
     /**
      * @Route("/shop/{family}/{model}", name="catalog")

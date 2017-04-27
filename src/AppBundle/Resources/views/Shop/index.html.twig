@@ -8,21 +8,6 @@
 
  <!-- Page Content -->
 <div class="container">
-    <div class="row">
-        <div class="col-md-3">
-            {% if form is defined %}
-            <div class="well">
-                <p class="lead">Filter</p>
-                {{ form(form) }}
-            </div>
-            <div>
-                <P>{{ search }}</P>
-                <P>{{ wear }}</P>
-                <P>{{ priceMin }}</P>
-                <P>{{ priceMax }}</P>
-            </div>
-            {% endif %}
-        </div>
         <div class="col-md-9">
                     <div class="row">
                         {% if listWeapons is empty %}
@@ -94,7 +79,9 @@
                 <table>
                     <tr>
                         <td colspan="2">
-                            {{ pagination(listWeapons) }}
+                            <div class="navigation">
+                                {{ knp_pagination_render(listWeapons) }}
+                            </div>
                         </td>
                     </tr>
                 </table>
