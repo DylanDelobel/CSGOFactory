@@ -12,7 +12,7 @@
         <div class="col-md-3">
             <div class="well">
                 <p class="lead">Filter</p>
-                <form action=" {{ path('shop') }}" method="get">
+                <form action=" {{ path('catalog', parameters) }}" method="get">
                     <label for="name">Name</label>
                     <input type="text" name="filter">
                     <label for="name">Price</label>
