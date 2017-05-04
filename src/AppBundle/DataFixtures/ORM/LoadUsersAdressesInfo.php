@@ -75,7 +75,7 @@ class LoadUsersAdressesInfo implements FixtureInterface
             )
         );
 
-        $user = $manager->getRepository("ShopBundle:User");
+        $user = $manager->getRepository("AppBundle:User");
         $listUser = $user->findAll();
 
         for ($i=0; $i < 20; $i++) {

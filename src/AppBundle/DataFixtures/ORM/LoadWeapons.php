@@ -16,7 +16,7 @@ class LoadWeapons implements FixtureInterface
 	public function load(ObjectManager $manager)
 	{
 		// Get all possible models
-		$modelRepository = $manager->getRepository("ShopBundle:Model");
+		$modelRepository = $manager->getRepository("AppBundle:Model");
 		$listModels = $modelRepository->findAll();
 		$numberModels = count($listModels)-1;
 
@@ -31,7 +31,8 @@ class LoadWeapons implements FixtureInterface
 		// Random 500 Weapons
 		for ($i=0; $i < 500; $i++) { 
 			$weapon = new Weapon();
-			$weapon->setModel($listModels[mt_rand(0,$numberModels)]);
+			$model = $listModels[mt_rand(0,$numberModels)];
+			$weapon->setModel($model);
 
 			$image = new Image();
 			$image->setPath("http://placehold.it/360x300");
@@ -40,19 +41,19 @@ class LoadWeapons implements FixtureInterface
 
 			if ($i % 2 == 0) {
 				// Get all possible crates
-				$crateRepository = $manager->getRepository("ShopBundle:Crate");
+				$crateRepository = $manager->getRepository("AppBundle:Crate");
 				$listCrates = $crateRepository->findAll();
 				$numberCrates = count($listCrates)-1;
 				$weapon->setCrate($listCrates[mt_rand(0,$numberCrates)]);
 			} else {
 				// Get all possible collections
-				$collectionRepository = $manager->getRepository("ShopBundle:Collection");
+				$collectionRepository = $manager->getRepository("AppBundle:Collection");
 				$listCollections = $collectionRepository->findAll();
 				$numberCollections = count($listCollections)-1;
 				$weapon->setCollection($listCollections[rand(0,$numberCollections)]);
 			}
 			
-			$weapon->setName("Weapon " . $i);
+			$weapon->setName($model->getName() . " " . $i);
 			$weapon->setQuality($qualitys[rand(0,4)]);
 			$weapon->setQuantity(rand(0,999));
 			$weapon->setPrice(rand(1,999));
