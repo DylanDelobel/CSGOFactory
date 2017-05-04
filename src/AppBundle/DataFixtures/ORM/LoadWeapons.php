@@ -45,13 +45,13 @@ class LoadWeapons implements FixtureInterface
 				$listCrates = $crateRepository->findAll();
 				$numberCrates = count($listCrates)-1;
 				$weapon->setCrate($listCrates[mt_rand(0,$numberCrates)]);
-			} else {
-				// Get all possible collections
-				$collectionRepository = $manager->getRepository("AppBundle:Collection");
-				$listCollections = $collectionRepository->findAll();
-				$numberCollections = count($listCollections)-1;
-				$weapon->setCollection($listCollections[rand(0,$numberCollections)]);
 			}
+            // Get all possible collections
+            $collectionRepository = $manager->getRepository("AppBundle:Collection");
+            $listCollections = $collectionRepository->findAll();
+            $numberCollections = count($listCollections)-1;
+            $weapon->setCollection($listCollections[rand(0,$numberCollections)]);
+
 			
 			$weapon->setName($model->getName() . " " . $i);
 			$weapon->setQuality($qualitys[rand(0,4)]);

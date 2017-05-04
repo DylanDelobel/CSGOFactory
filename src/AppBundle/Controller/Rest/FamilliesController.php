@@ -18,7 +18,6 @@ class FamilliesController extends Controller
         if (empty($famillies)){
             return array("code" => "404", "message" => "Not Found");
         }
-
         return $famillies;
     }
 
@@ -44,10 +43,8 @@ class FamilliesController extends Controller
             $em->persist($family);
             $em->flush();
             return $family;
-        }else{
-            return array("code" => "400", "message" => "Form is Invalid");
         }
-
+        return array("code" => "400", "message" => "Form is Invalid");
     }
 
     public function putFamillieAction($id, Request $request){

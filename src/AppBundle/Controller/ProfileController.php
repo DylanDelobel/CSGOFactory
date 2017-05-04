@@ -27,13 +27,11 @@ class ProfileController extends Controller
         $securityContext = $this->container->get('security.authorization_checker');
         if ($securityContext->isGranted('IS_AUTHENTICATED_FULLY')) {
             // 2) Si utilisateur login, en récupère son id
-            $user =  $this->getUser();
-
-        }else{
+            //$user = $this->getUser();
+        } else {
             // 3) Sinon on redirige l'utilisateur vers la page login
             return $this->redirectToRoute('fos_user_security_login');
         }
-
         return $this->render('AppBundle:Profile:profile.html.twig');
     }
 
@@ -48,7 +46,7 @@ class ProfileController extends Controller
             // 2) Si utilisateur login, en récupère son id
             $user =  $this->getUser();
 
-        }else{
+        } else {
             // 3) Sinon on redirige l'utilisateur vers la page login
             return $this->redirectToRoute('fos_user_security_login');
         }
@@ -61,8 +59,6 @@ class ProfileController extends Controller
         $form = $this->createForm(UserType::class);
         $form->setData($user);
 
-
-        $error = 0;
         $result = 0;
 
         if ($request->getMethod() == 'POST') {
@@ -72,7 +68,6 @@ class ProfileController extends Controller
             $data = $form->getData();
 
             if($form->isValid()){
-
 
                 $user->setUsernameCanonical(strtolower($data->getUsername()));
                 $user->setEmailCanonical(strtolower($data->getEmail()));
@@ -93,18 +88,17 @@ class ProfileController extends Controller
                             $session->getFlashBag()->add('updateUser','Modifications save.');
                             return $this->redirectToRoute('profile_update');
 
-                        }else{
+                        } else {
                             $session->getFlashBag()->add('errorMdp','Both passwords are not the same.');
                             $result=1;
                         }
 
-                    }else{
+                    } else {
                         // prévient que les deux inputs doivent être plein
                         $session->getFlashBag()->add('errorRepeatMdp','For change password, please fill in both fields.');
                         $result=1;
                     }
                 }
-
 
                 if($result == 0){
                     $user->setPassword($actualPassword);
@@ -115,11 +109,8 @@ class ProfileController extends Controller
                     $session->getFlashBag()->add('updateUserFalse','Modifications no\'t save.');
                     return $this->redirectToRoute('profile_update');
                 }
-
             }
-
         }
-
 
         return $this->render('AppBundle:Profile:form_update_profile.html.twig', array(
             'form' => $form->createView(),

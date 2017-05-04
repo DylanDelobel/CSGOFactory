@@ -44,9 +44,9 @@ class CollectionsController extends Controller
             $em->persist($collection);
             $em->flush();
             return $collection;
-        } else {
-            return array("code" => "400", "message" => "Form is Invalid");
         }
+        return array("code" => "400", "message" => "Form is Invalid");
+
     }
 
     public function putCollectionAction($id, Request $request){

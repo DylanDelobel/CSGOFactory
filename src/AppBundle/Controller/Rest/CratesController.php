@@ -44,9 +44,8 @@ class CratesController extends Controller
             $em->persist($crate);
             $em->flush();
             return $crate;
-        } else {
-            return array("code" => "400", "message" => "Form is Invalid");
         }
+        return array("code" => "400", "message" => "Form is Invalid");
     }
 
     public function putCrateAction($id, Request $request){
