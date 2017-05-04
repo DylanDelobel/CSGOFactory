@@ -37,7 +37,7 @@ class LoadWeapons implements FixtureInterface
 			$image = new Image();
 			$image->setPath("http://placehold.it/360x300");
 			$weapon->setImage($image);
-			$manager->persist($image);
+			$manager->persist($image);c
 
 			if ($i % 2 == 0) {
 				// Get all possible crates

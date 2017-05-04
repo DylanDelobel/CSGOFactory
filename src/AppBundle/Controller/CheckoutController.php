@@ -250,10 +250,10 @@ class CheckoutController extends Controller
         if(!$session->has('address')){
             //alors crée addresse
             $session->set('address',array());
-        }else{
-            //sinon recupere les information stocker
-            $address = $session->get('address');
         }
+        //sinon recupere les information stocker
+        $address = $session->get('address');
+
         //Si les adresse Delivery et Billing sont different de null
         if ($request->request->get('Delivery') != null && $request->request->get('Billing') != null){
             //alors on cette les deux dans la variable $address

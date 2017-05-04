@@ -67,11 +67,9 @@ class ContactController extends Controller
             if($result == 1){
                 $session->getFlashBag()->add('notificationEmail','Email sent.');
 
-            }else{
-                $session->getFlashBag()->add('notificationEmail',"Error, mail not sent.");
-                $result = 0;
             }
-
+            $session->getFlashBag()->add('notificationEmail',"Error, mail not sent.");
+            $result = 0;
         }
 
         //Renvoyer sur la page contact avec le formulaire
