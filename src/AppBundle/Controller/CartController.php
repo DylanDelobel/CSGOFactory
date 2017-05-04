@@ -56,9 +56,10 @@ class CartController extends Controller
                 //On ajoute plus 1
                 $cart[$id] ++;
             }
+        }else{
+            //Sinon on ajoute juste l'objet avec une quantiter de 1
+            $cart[$id] = 1;
         }
-        //Sinon on ajoute juste l'objet avec une quantiter de 1
-        $cart[$id] = 1;
 
         //On le rajoute dans le panier de la session 'cart'
         $session->set('cart',$cart);

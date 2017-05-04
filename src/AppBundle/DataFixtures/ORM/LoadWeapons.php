@@ -37,7 +37,7 @@ class LoadWeapons implements FixtureInterface
 			$image = new Image();
 			$image->setPath("http://placehold.it/360x300");
 			$weapon->setImage($image);
-			$manager->persist($image);c
+			$manager->persist($image);
 
 			if ($i % 2 == 0) {
 				// Get all possible crates
@@ -45,6 +45,12 @@ class LoadWeapons implements FixtureInterface
 				$listCrates = $crateRepository->findAll();
 				$numberCrates = count($listCrates)-1;
 				$weapon->setCrate($listCrates[mt_rand(0,$numberCrates)]);
+			} else {
+				// Get all possible collections
+				$collectionRepository = $manager->getRepository("AppBundle:Collection");
+				$listCollections = $collectionRepository->findAll();
+				$numberCollections = count($listCollections)-1;
+				$weapon->setCollection($listCollections[rand(0,$numberCollections)]);
 			}
             // Get all possible collections
             $collectionRepository = $manager->getRepository("AppBundle:Collection");
