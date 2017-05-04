@@ -28,7 +28,8 @@
                         <!-- Si c'est un utilisateur normal -->
                     {% else %}
 
-                        <li><a href="{{ url('profile') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Profile <span>({{ user.username }})</span></a></li>
+                        {#<li><a href="{{ url('profile') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Profile <span>({{ user.username }})</span></a></li>#}
+                        <li><a href="{{ url('profile_update') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Profile <span>({{ user.username }})</span></a></li>
 
                     {% endif %}
                     <li><a href="{{ url('cart') }}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart</a></li>

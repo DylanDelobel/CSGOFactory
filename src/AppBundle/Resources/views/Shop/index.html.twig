@@ -13,11 +13,33 @@
             <div class="well">
                 <p class="lead">Filter</p>
                 <form action=" {{ path('catalog', parameters) }}" method="get">
-                    <label for="name">Name</label>
-                    <input type="text" name="filter">
-                    <label for="name">Price</label>
-                    <input type="text" name="price">
-                    <button type="submit" class="btn btn-default btn-sm">Filter Now</button>
+                    <div class="row">
+                      <div class="form-group">
+                          <div class="col-sm-3 col-md-3 col-lg-3">
+                              <label for="name">Name</label>
+                          </div>
+                          <div class="col-sm-8 col-md-8 col-lg-8">
+                              <input type="text" name="filter" id="name" class="form-control">
+                          </div>
+                      </div>
+                    </div><br>
+
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-sm-3 col-md-3 col-lg-3">
+                                <label for="price">Price</label>
+                            </div>
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                <input type="text" name="price" id="price" class="form-control">
+                            </div>
+                        </div>
+                    </div><br>
+
+                    <div class="row">
+                        <div class="col-md-offset-1">
+                            <button type="submit" class="btn btn-default btn-sm">Filter Now</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
